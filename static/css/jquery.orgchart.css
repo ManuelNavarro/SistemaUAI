@@ -1,0 +1,120 @@
+div.orgChart {
+    margin                : 10px;
+    padding               : 20px;
+}
+
+div.orgChart h2 {
+    /*margin                : 0px; */
+    font-size             : 0.9em;
+    border-bottom         : none;
+}
+
+div.orgChart ul {
+    list-style            : none;
+    margin                : 4px;
+    padding               : 0px;
+    font-size             : 0.8em;
+    text-align            : left;
+}
+
+div.orgChart ul.stack,
+div.orgChart ul.stack ul {
+    text-align            : center;
+}
+
+div.orgChart table {
+    width                 : 100%;
+}
+
+div.orgChart tr.lines td.line {
+    width                 : 1px;
+    height                : 20px;
+}
+
+div.orgChart tr.lines td.top {
+    border-top            : 3px solid black;
+}
+
+div.orgChart tr.lines td.left {
+    border-right          : 2px solid black;
+}
+
+div.orgChart tr.lines td.right {
+    border-left           : 2px solid black;
+}
+
+div.orgChart td {
+    text-align            : center;
+    vertical-align        : top;
+    padding               : 0px 2px;
+}
+
+div.orgChart div.node {
+    cursor                : default;
+    border                : 2px solid #9FC448;
+    display               : inline-block;
+    padding               : 0 4px;
+    width                 : 96px;
+    height                : auto;
+    background-color      : #9FC448;
+    line-height           : 1.3em;
+    
+    border-radius         : 8px;
+    
+    box-shadow            : 4px 4px 6px #888888;
+    -moz-border-radius    : 8px;
+    -moz-box-shadow       : 4px 4px 6px #888888;
+    -webkit-border-radius : 8px;
+    -webkit-box-shadow    : 4px 4px 6px #888888;
+    color                 : #FFF;
+    vertical-align        : top;
+}
+
+div.orgChart div.hasChildren {
+    background-color      : #4C9ED9;
+    border                : 2px solid #4C9ED9;
+}
+
+div.orgChart.interactive div.hasChildren {
+    cursor                : pointer;
+}
+
+div.orgChart div.node.hover {
+    color: #5A5A5A !important;
+    background-color      : #F5F7FA;
+    border-color          : #F5F7FA;
+    text-shadow           : 0px 1px 1px #EEE !important;
+}
+
+div.orgChart div.adjunct.node {
+    position              : absolute !important;
+    margin-top            : 5px;
+    margin-left           : -140px;
+    width                 : 120px;
+    height                : 35px;
+    background-color      : #9585BF;
+    border                : 2px solid #9585BF;
+    color                 : #FFF;
+    font-size             : 0.8em;
+}
+
+div.orgChart div.adjunct-link {
+    display               : inline-block;
+    position              : absolute;
+    margin-left           : -20px;
+    margin-top            : 25px;
+    width                 : 20px;
+    border                : 1px dashed black;
+}
+
+div.orgChart div.clone.node {
+    position              : absolute !important;
+    margin-top            : 5px;
+    margin-left           : -140px;
+    width                 : 120px;
+    height                : 35px;
+    background-color      : #9585BF;
+    border                : 2px solid #9585BF;
+    color                 : #D3D3D3;
+    font-size             : 0.8em;
+}

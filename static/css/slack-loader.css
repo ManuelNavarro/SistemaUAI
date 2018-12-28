@@ -1,0 +1,81 @@
+/*
+About Author
+By CrocoDillon
+http://codepen.io/CrocoDillon/
+*/
+.loaderCSS {
+  position: relative;
+  width: 7.5em;
+  height: 7.5em;
+  transform: rotate(165deg);
+  z-index: 9999;
+  /*position: absolute;*/
+  /*vertical-align: middle;*/
+  /*top: 50%;
+  left: 50%;*/
+}
+.loaderCSS:before, .loaderCSS:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 0.6em;
+  transform: translate(-50%, -50%);
+}
+.loaderCSS:before {
+  animation: before 2s infinite;
+}
+.loaderCSS:after {
+  animation: after 2s infinite;
+}
+
+@keyframes before {
+  0% {
+    width: 1.2em;
+    box-shadow: 3.15em -1.95em rgba(215, 114, 97, 0.75), -3.15em 1.95em rgba(131, 189, 228, 0.75);
+  }
+  35% {
+    width: 7.5em;
+    box-shadow: 0 -1.95em rgba(215, 114, 97, 0.75), 0 1.95em rgba(131, 189, 228, 0.75);
+  }
+  70% {
+    width: 1.2em;
+    box-shadow: -3.15em -1.95em rgba(215, 114, 97, 0.75), 3.15em 1.95em rgba(131, 189, 228, 0.75);
+  }
+  100% {
+    box-shadow: 3.15em -1.95em rgba(215, 114, 97, 0.75), -3.15em 1.95em rgba(131, 189, 228, 0.75);
+  }
+}
+@keyframes after {
+  0% {
+    height: 1.2em;
+    box-shadow: 1.95em 3.15em rgba(152, 194, 145, 0.75), -1.95em -3.15em rgba(254, 193, 106, 0.75);
+  }
+  35% {
+    height: 7.5em;
+    box-shadow: 1.95em 0 rgba(152, 194, 145, 0.75), -1.95em 0 rgba(254, 193, 106, 0.75);
+  }
+  70% {
+    height: 1.2em;
+    box-shadow: 1.95em -3.15em rgba(152, 194, 145, 0.75), -1.95em 3.15em rgba(254, 193, 106, 0.75);
+  }
+  100% {
+    box-shadow: 1.95em 3.15em rgba(152, 194, 145, 0.75), -1.95em -3.15em rgba(254, 193, 106, 0.75);
+  }
+}
+/**
+ * Attempt to center the whole thing!
+ */
+/*html,
+body {
+  height: 100%;
+}*/
+
+.loaderCSS {
+  position: absolute;
+  top: calc(50% - 3.75em);
+  left: calc(50% - 3.75em);
+}

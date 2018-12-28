@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load staticfiles %}
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>
+            {% block title %} Base view {% endblock %}
+        </title>
+
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}"/>
+
+        <!-- CSS -->
+        <!-- Chosen -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/chosen.min.css' %}"  />
+
+        <!-- CSS para edit table -->
+        <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/editor.dataTables.css' %}"> -->
+     
+  
+
+        <!-- bootstrap & fontawesome -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/ace/bootstrap.min.css' %}"  />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/ace/font-awesome5.css' %}" >
+        <link rel="stylesheet" type="text/css" href="{% static 'css/ace/font-awesome.css' %}" >
+        <!--<link rel="stylesheet" type="text/css" href="{% static 'css/ace/v4-shims.css' %}" >-->
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/fullcalendar.css' %}">
+
+        <!-- page specific plugin styles -->
+
+        <!-- text fonts -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/ace/ace-fonts.css' %}">
+
+        <!-- ace styles -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/ace/ace.min.css' %}">
+        <!--[if lte IE 9]>
+            <link rel="stylesheet" href="static/css/ace-part2.min.css" />
+        <![endif]-->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/ace/ace-skins.min.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/ace/ace-rtl.min.css' %}">
+        <!--[if lte IE 9]>
+          <link rel="stylesheet" href="static/css/ace-ie.min.css" />
+        <![endif]-->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.orgchart.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/chosen.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/datepicker.css' %}">
+        <!-- File input-->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/fileinput.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.css' %}">
+        <!-- Colorbox -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/colorbox.min.css' %}">
+        <!-- Spinner -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/jquery.bootstrap-touchspin.css' %}">
+        <!-- Diff -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/diffview.css' %}">
+        <!-- Uno de los que activa el ajax -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/slack-loader.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-timepicker.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-tour.css' %}">
+
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}">
+        
+        
+       <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-datetimepicker.css' %}">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/jquery-ui.structure.css' %}">
+
+        <!-- POPOVER -->
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/select2.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'assets/css/ggpopover.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-tagsinput.css' %}">
+
+        <!--<link rel="stylesheet" type="text/css" href="{% static 'css/full-calendar/fullcalendar.print.css' %}">-->
+
+        <!--<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.dataTables.min.css' %}">-->
+       <!--  <link rel="stylesheet" type="text/css" href="{% static 'css/fixedColumns.dataTables.min.css' %}">-->
+        
+        {% block addExtraStyle %} {% endblock %} 
+              <style type="text/css">
+                #notificaciones{
+                position: fixed;
+                right:0px;
+                top:10%;
+                width: 35%;
+                z-index: 2500;
+                }
+                .toolbox_girhux{
+                     position: fixed;
+                     right: 0px;
+                     top: 5%;
+                    z-index: 3;
+                }
+                .toolbox_comment{
+                     position: fixed;
+                     right: 0px;
+                     top: 15%;
+                     z-index: 3;
+                }
+                .user_photo{
+                  width: 250px;
+                  height: 250px;
+                  border-radius: 100px;
+                }
+              </style>    
+
+        <!-- JAVASCRIPT -->
+
+        <!-- POPOVER -->
+        <script src="{% static 'assets/js/jquery-2.1.3.min.js' %}"></script>
+        <script src="{% static 'assets/js/ggpopover.min.js' %}"></script>            
+
+
+
+        <!-- ace settings handler -->
+        
+        <script type="text/javascript" src="{% static 'js/ace-extra.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/ace/spin.js' %}"></script>  
+        <!-- Pone la pantalla oscura al hacer ajax dentro de funciones -->
+        <script type="text/javascript" src="{% static 'js/ace/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery-ui.custom.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.ui.touch-punch.js' %}"></script>
+         <!-- 
+                ** == PARA FUNCIONAMIENTO CORRECTO DEL CALENDARIO UCA (NO FUNCIONA DATETIMEPICKER SI LO INCLUYO AQUI)
+              ** <script type="text/javascript" src="{% static 'js/full-calendar/moment.js' %}"></script>
+              ** <script type="text/javascript" src="{% static 'js/full-calendar/fullcalendar.min.js' %}"></script>-->
+
+        <!--   **<script type="text/javascript" src="{% static 'js/fullcalendar.js' %}"></script>-->
+        <script type="text/javascript" src="{% static 'js/moment.min.js' %}"></script>
+       
+
+        <script type="text/javascript" src="{% static 'js/bootbox.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/ace/jquery.dataTables.min.js' %}"></script>
+        
+        <script type="text/javascript" src="{% static 'js/ace/ace-elements.min.js' %}"></script>
+        <!--<script type="text/javascript" src="{% static 'js/jquery.orgchart.js' %}"></script> -->     
+        <script type="text/javascript" src="{% static 'js/fuelux.spinner.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/fnReloadAjax.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/ace/bootstrap.dataTables.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/ace/dataTables.fixedColumns.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/ace/jquery.browser.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/validaciones_form.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/chosen.jquery.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/chosen.proto.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.nestable.js' %}"></script>
+       
+        <script type="text/javascript" src="{% static 'js/fileinput.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/fileinput_locale_es.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/maskedinput.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.bootstrap-touchspin.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.maxlength.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/dataTables.rowsGroup.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.blockUI.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bootstrap-timepicker.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bootstrap-datepicker.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/difflib.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/diffview.js' %}"></script>
+
+        <script type="text/javascript" src="{% static 'js/bootstrap-tour.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bootstrap-editable.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/ace-editable.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/slick.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bootstrap-wysiwyg.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.hotkeys.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/ace/elements.wysiwyg.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
+       <!-- <script type="text/javascript" src="{% static 'js/jquery.maskMoney.js' %}"></script>-->
+        <script type="text/javascript" src="{% static 'js/jquery.formatCurrency.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.knob.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/readmore.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.easypiechart.min.js' %}"></script>
+        <!-- ** <script type="text/javascript" src="{% static 'js/lang-all.js' %}"></script>-->
+        <script type="text/javascript" src="{% static 'assets/js/select2.js' %}"></script>
+        <script type="text/javascript" src="{% static 'assets/js/typeahead.bundle.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bootstrap-tagsinput.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bloodhound.min.js' %}"></script>    
+
+        <script type="text/javascript" src="{% static 'js/print.min.js' %}"></script>    
+
+        <script type="text/javascript" src="{% static 'js/jquery.colorbox.min.js' %}"></script>   
+
+       <!-- JS para edit table -->
+       <!--  <script type="text/javascript" src="{% static 'js/dataTables.editor.js' %}"></script> -->
+
+        {% block addExtraScript %} {% endblock %}
+ 
+    </head>
+    <body class="no-skin">
+        <!-- navbar goes here -->
+     <div id="navbar" class="navbar navbar-default navbar-collapse h-navbar">
+            <script type="text/javascript">
+                try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+            </script>
+
+            <div class="navbar-container" id="navbar-container">
+                <div class="navbar-header pull-left">
+                    <!-- #section:basics/navbar.layout.brand -->
+                   
+                    <a href="{#{% url 'home' %}#}" class="navbar-brand" style="padding-bottom: 0px; padding-top: 0px;">
+                        <img src="{%static 'images/LogoOficial/LogoUCAblancoMini2.png'%}" style="display: inline;">
+                        <small style="font-size: 12px">
+                            <!--<i class="fa fa-users"></i>-->
+                            
+                            AAIX - Sistema para la administración de Archivo Institucional UCA
+                        </small>
+                        
+                    </a>
+                    <!-- /section:basics/navbar.layout.brand -->
+
+                    <!-- #section:basics/navbar.toggle -->
+                    <button class="pull-right navbar-toggle navbar-toggle-img collapsed" type="button" data-toggle="collapse" data-target=".navbar-buttons,.navbar-menu">
+                        <span class="sr-only">Toggle user menu</span>
+
+                        <img id="avatar" src="{% static 'images/avatar/avatar2.png' %}" alt="Jason's Photo">
+                    </button>
+
+                    <button class="pull-right navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".sidebar">
+                        <span class="sr-only">Toggle sidebar</span>
+
+                        <span class="icon-bar"></span>
+
+                        <span class="icon-bar"></span>
+
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <!-- /section:basics/navbar.toggle -->
+                </div>
+
+                <!-- #section:basics/navbar.dropdown -->
+                <div class="navbar-buttons navbar-header pull-right  collapse navbar-collapse" role="navigation">
+                    <ul class="nav ace-nav">
+                        {%if request.session.real_user%}
+                            <li class="dark">
+                                <a>
+                                    <i class="ace-icon fa fa-user-secret bigger-180"></i>
+                                    AAIX como: {{request.session.usuarioLog|safe}}
+                                </a>
+                            </li>
+                        {%endif%}
+
+                        <li class="grey">
+                            {%if request.session.db_name != 'BD_INVENTARIO_UAI' %}
+                                {%if permisos.lbl_dev == 1%}
+                                    <a><i class="fa fa-database"></i> &nbsp; Base de prueba ( {{request.session.db_name}} )</a>
+                                {%else%}
+                                    <a><i class="fa fa-database"></i> &nbsp; Base de prueba</a>
+                                {%endif%}
+                            {%endif%}
+                        </li>
+                        <!-- #section:basics/navbar.user_menu -->
+                        <li class="purple">
+                            <a id="nombres_roles_usuario" class="text-primary"> 
+                                <!--<span class="label label-light arrowed" id="lbl_rol_usuario"><label class="text-info"><i class="fa fa-bullseye"></i> <label id="nombres_roles_usuario"></label></label></span>-->
+                                <script >
+                                 
+                                    {%if leyenda_roles == ''%}
+                                        $("#nombres_roles_usuario").hide();
+                                    {%else%} 
+                                        $("#nombres_roles_usuario").html('<i class="fa fa-bullseye"></i> &nbsp;{{leyenda_roles | safe}}'); 
+                                    {%endif%}
+                                </script>
+                            </a>
+                        </li>
+
+                        <li class="green user-min">
+                            <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                                <!--<img src="cinqueterre.jpg" class="img-thumbnail" alt="Cinque Terre" width="304" height="236">-->
+                               
+                                 <img class="nav-user-photo" style="margin:0px;padding:0px" src="{{ MEDIA_URL }}/{{foto_usuarioLog}}" alt="Photo" width="42" height="42">
+    
+                                 <span class="user-info">
+                                    <!--<small>Bienvenido,</small> María Velasco -->
+                                    <small>Bienvenido, {{ request.session.usuarioLog | safe }}
+                                    </small>
+                                </span>
+                                <i class="ace-icon fa fa-caret-down"></i>
+                            </a>
+
+                            <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                                <li>
+                                     <!--<a href="{#{% url 'logoutExterno' %}#}">-->
+                                        <i class="ace-icon fa fa-power-off"></i> Salir
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- /section:basics/navbar.user_menu -->
+                    </ul>
+                </div>
+
+                <!-- /section:basics/navbar.dropdown -->
+            </div><!-- /.navbar-container -->
+        </div>
+
+<!--***************************************************************************************************************************-->
+
+        <div class="main-container" id="main-container">
+            <script type="text/javascript">
+                try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+            </script>
+
+            <!-- Horizontal sidebar menu -->
+           
+
+           <div id="sidebar" class="sidebar  h-sidebar navbar-collapse collapse" style="height: auto;">
+                <script type="text/javascript">
+                    try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+                </script>
+
+                <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+                    <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                        
+                        <button class="btn btn-danger my-tooltip-link-base-2" onClick="parent.location='/admin'" title="Configuraciones generales">
+                            <i class="ace-icon fa fa-cogs"></i>
+                        </button>
+
+                        <!-- /section:basics/sidebar.layout.shortcuts -->
+                    </div>
+
+                    <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+
+                        <span class="btn btn-success"></span>
+                        <span class="btn btn-info"></span>
+                        <span class="btn btn-warning"></span>
+                        <span class="btn btn-danger"></span>
+
+                    </div>
+                </div><!-- /.sidebar-shortcuts -->
+
+                <ul class="nav nav-list" style="top: 0px;">
+                    
+                    {% block  menu%}
+                        {{ menu | safe  }}
+                    {% endblock %}
+                    
+
+                </ul>
+                <!-- #section:basics/sidebar.layout.minimize -->
+                <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+                    <i class="ace-icon fa fa-angle-double-left" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+                </div>
+
+                <!-- /section:basics/sidebar.layout.minimize -->
+                <script type="text/javascript">
+                    try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+                </script>
+            </div>
+
+
+            <div class="main-content" style="margin-bottom: 2%">
+                <div class="breadcrumbs" id="breadcrumbs">
+                    <script type="text/javascript">
+                        try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+                    </script>
+
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="ace-icon fa fa-home home-icon"></i>
+                            <!--<a href="{#{% url 'home' %}#}">Inicio</a>-->
+                        </li>
+                        {{Breadcrumb|safe}}
+                        {% block addBreadcrumbElementsAux %}
+                        {% endblock %}
+                        
+                    </ul><!-- /.breadcrumb -->
+
+                    <!-- #section:basics/content.searchbox 
+                    <div class="nav-search" id="nav-search">
+                        <form class="form-search">
+                            <span class="input-icon">
+                                <input placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" type="text">
+                                <i class="ace-icon fa fa-search nav-search-icon"></i>
+                            </span>
+                        </form>
+                    </div> /.nav-search -->
+
+                    <!-- /section:basics/content.searchbox -->
+                
+                </div>
+                <div class="page-content">
+
+                    <div class="page-header">
+                        <h1>
+                            {% block pagetitle %}
+
+                            {% endblock %}
+                        </h1>
+                    </div><!-- /.page-header -->
+
+                    <div class="toolbox_girhux">
+                        <div id="ace-settings-container" class="ace-settings-container" style="position: fixed;top: 125px;">
+                            <div class="btn btn-app btn-xs btn-inverse ace-settings-btn my-tooltip-link-base" title="Unidades/departamento asociadas" id="ace-settings-btn" style="opacity: 1 !important">
+                                <i class="ace-icon fa fa-bars bigger-150"></i>
+                            </div>
+
+                            <div class="ace-settings-box clearfix" id="ace-settings-box">
+                                <div class="pull-left width-50">
+                                    <!-- /section:settings.skins -->
+                                    <div class="ace-settings-item" style="max-height: none;">
+                                        <button class="btn btn-xs btn-inverse ver_tour" style="display:none"><i class="ace-icon glyphicon glyphicon-question-sign bigger-110"></i> &nbsp; Ver Ayuda</button>
+                                        {{cambio_de_unidad | safe}}
+
+                                        {% ifequal cambio_de_unidad|length 0 %}
+                                        <script>$(".toolbox_girhux").hide();</script>
+                                        {% endifequal %}
+                                    </div>
+                                </div><!-- /.pull-left -->
+                            </div><!-- /.ace-settings-box -->
+                        </div>            
+                    </div> 
+                    <!-- TOOLBOX PARA REPORTES DE BUGS-->
+                     <div class="toolbox_comment" onclick="retroalimentacionGirhux()">
+                       <div class="ace-settings-container" id="ace-settings-container" style="position: fixed;top: 80px;">
+                            <div class="btn btn-app btn-xs btn-pink ace-settings-btn my-tooltip-link-base" id="ace-settings-btn" title="Registrar retroalimentación">
+                                <i class="ace-icon fa fa-commenting-o bigger-150"></i>
+                            </div>
+
+                            <div class="ace-settings-box clearfix" id="ace-settings-box">
+                                <div class="pull-left">
+                                </div><!-- /.pull-left -->
+
+                            </div><!-- /.ace-settings-box -->
+                        </div>            
+                    </div> 
+                    <!---->
+                    <!--content-->
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- page content goes here -->    
+                                   
+                            {% block content %}
+                                
+                            {% endblock %}
+                            {#{%include 'modalRetroalimentacion.html' %}#}
+                             <div class="row" style="display:none" id="id_error_base">
+                               <div class="error-container">
+                                    <div class="well">
+                                        <h1 class="grey lighter smaller">
+                                            <span class="blue bigger-125">
+                                                403
+                                            </span>
+                                        </h1>
+                                        <center>
+                                            <h1 class="grey lighter">
+                                                <i class="blue fa fa-hand-paper-o fa-5x"></i>
+                                            </h1>
+                                            <br>
+                                            <h1 class="grey lighter smaller">
+                                                <i class="fa-2x">Acceso denegado.</i>
+                                            </h1>
+                                        </center>
+                                        <hr>
+                                        <h3 class="lighter smaller">Lo sentimos, usted no tiene permisos de acceder a esta página.</h3>
+
+                                        <div>
+                                            <div class="space"></div>
+                                            <h4 class="smaller">Sugerencias:</h4>
+
+                                            <ul class="list-unstyled spaced inline bigger-110 margin-15">
+                                                <li>
+                                                    <i class="ace-icon fa fa-hand-o-right blue"></i>
+                                                    Verífique si se ha ingresado con el usuario correcto.
+                                                </li>
+                                                <li>
+                                                    <i class="ace-icon fa fa-hand-o-right blue"></i>
+                                                    <!--<a href="{#{%url 'logout'%}#}">Cerrar--> sesión</a> 
+                                                </li>
+                                                <li id="li_back_home">
+                                                    <i class="ace-icon fa fa-hand-o-right blue"></i>
+                                                    Regresa a <a href="{#{%url 'home'%}#}">Home</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <hr>
+                                        <div class="space"></div>
+
+                                    </div>
+                                </div>
+                            </div>           
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.page-content -->
+            </div><!-- /.main-content -->
+            <div class="space-32"></div> <div class="space-32"></div><div class="space-32"></div>
+            <div class="footer">
+                <div class="footer-inner">
+                    <div class="footer-content">
+                        <span class="bigger-130">
+                            <span class="blue bolder">UCA</span>
+                            Sistema para la administración de Archivo Institucional UCA © 2019
+                           
+                            <h6>Dirección de Sistemas y Gestión de Información</h6>
+                            
+                            <h6>Universidad Centroamericana José Simeón Cañas</h6>
+                            
+                            <h6>La Libertad, El Salvador, Centroamérica</h6>
+
+                            <h6>direccion.sistemas@uca.edu.sv</h6>
+                        </span>
+                        <span class="action-buttons">
+                            <a href="http://correo.uca.edu.sv">
+                                <i class="ace-icon fa fa-envelope orange bigger-150"></i>
+                            </a>
+                            <a href="http://twitter.com/UCA_ES">
+                                <i class="ace-icon fa fa-twitter-square light-blue bigger-160"></i>
+                            </a>
+
+                            <a href="http://www.facebook.com/UCA.ElSalvador">
+                                <i class="ace-icon fa fa-facebook-square text-primary bigger-160"></i>
+                            </a>
+
+                            
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.main-container -->
+        <div id="notificaciones"></div>
+    </body>
+</html>
+
+{% block addJavascripts %} 
+    <script type="text/javascript" src="{% static 'js/ace/ace-elements.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/ace/ace.min.js' %}"></script>
+
+    <script type="text/javascript">
+    $('.my-tooltip-link-base').attr('data-placement','left');
+    $('.my-tooltip-link-base').tooltip({
+        container : 'body'
+    });  
+    $('.my-tooltip-link-base-2').attr('data-placement','right');
+    $('.my-tooltip-link-base-2').tooltip({
+        container : 'body'
+    });  
+    $(document).ajaxStart($.blockUI).ajaxStop($.unblockUI);
+    if('ontouchstart' in document.documentElement) document.write("<script src='../assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+
+            jQuery(function($) {
+             var $sidebar = $('.sidebar').eq(0);
+             if( !$sidebar.hasClass('h-sidebar') ) return;
+            
+             $(document).on('settings.ace.top_menu' , function(ev, event_name, fixed) {
+                if( event_name !== 'sidebar_fixed' ) return;
+            
+                var sidebar = $sidebar.get(0);
+                var $window = $(window);
+            
+                //return if sidebar is not fixed or in mobile view mode
+                if( !fixed || ( ace.helper.mobile_view() || ace.helper.collapsible() ) ) {
+                    $sidebar.removeClass('hide-before');
+                    //restore original, default marginTop
+                    ace.helper.removeStyle(sidebar , 'margin-top')
+            
+                    $window.off('scroll.ace.top_menu')
+                    return;
+                }
+            
+            
+                 var done = false;
+                 $window.on('scroll.ace.top_menu', function(e) {
+            
+                    var scroll = $window.scrollTop();
+                    scroll = parseInt(scroll / 4);//move the menu up 1px for every 4px of document scrolling
+                    if (scroll > 17) scroll = 17;
+            
+            
+                    if (scroll > 16) {          
+                        if(!done) {
+                            $sidebar.addClass('hide-before');
+                            done = true;
+                        }
+                    }
+                    else {
+                        if(done) {
+                            $sidebar.removeClass('hide-before');
+                            done = false;
+                        }
+                    }
+            
+                    sidebar.style['marginTop'] = (17-scroll)+'px';
+                 }).triggerHandler('scroll.ace.top_menu');
+            
+             }).triggerHandler('settings.ace.top_menu', ['sidebar_fixed' , $sidebar.hasClass('sidebar-fixed')]);
+            
+             $(window).on('resize.ace.top_menu', function() {
+                $(document).triggerHandler('settings.ace.top_menu', ['sidebar_fixed' , $sidebar.hasClass('sidebar-fixed')]);
+             });
+            
+            
+            $('[name="unidad_chk"]').on('click',function(){
+               
+                var unidad_id=$(this).val();
+                jQuery.ajax({
+                    url: "{#{%url 'girhux_cambiar_unidad' %}#}",
+                    type: "POST",
+                    processData: false,
+                    data: "csrfmiddlewaretoken="+$("[name=csrfmiddlewaretoken]").val()+"&unidad_id="+unidad_id,
+                    success: function(json){
+                        location.reload();
+                    }
+                });
+            });
+
+
+            //CONTROL EN TIPO ACTA DE REQUISICION DE UNIDAD Y PUESTO
+            $(".select_tipo_acta").on('change',function(){
+                var newValue=$(this).val();
+                 if(newValue=='JD'){
+                    $(this).parent().find(".directors-board-mask").mask("JD-999/99", {placeholder:"JD-###/##"});
+                  }else{
+                    $(this).parent().find(".directors-board-mask").mask("R-999/99", {placeholder:"R-###/##"});
+                  }         
+            });
+
+
+        });
+        
+        //funcion para solo un archivo a subir y esta funcion se repite en CV por lo que cualquier cambio aqui se tiene que aplicar en CV
+        //PESO DE UN ARCHIVO y SET pesoArchivoReal
+        function limitarPesoArchivo(id_contenedor,Title,id_alerta,id_top){
+            $(".max_tam_archivo").html('<small class="blue">Tamaño máximo: '+pesoArchivoLimite+' MB');
+            $("#"+id_contenedor).find("input:file").change(function (){
+                console.log("contenedor "+id_contenedor+": "+$("#"+id_contenedor));
+                console.log("input: "+$("#"+id_contenedor).find("[type=file]"));
+                console.log("ID: "+document.getElementById($("#"+id_contenedor).find("[type=file]").attr("id")));
+                console.log("Cantidad archivo: "+document.getElementById($("#"+id_contenedor).find("[type=file]").attr("id")).files.length);
+                console.log("Peso archivo: "+(document.getElementById($("#"+id_contenedor).find("[type=file]").attr("id")).files[0].size/1048576).toFixed(2));
+                if ( document.getElementById($("#"+id_contenedor).find("[type=file]").attr("id")).files.length > 0 && ((document.getElementById($("#"+id_contenedor).find("[type=file]").attr("id")).files[0].size/1048576).toFixed(2)) > pesoArchivoLimite){
+                    if(id_alerta==null){
+                        create_alert("<li><b>"+Title+":</b> El tamaño del archivo supera el limite de: "+pesoArchivoLimite+" MB","INFO","notificaciones",true,6000);
+                    }else{
+                        create_alert("<li><b>"+Title+":</b> El tamaño del archivo supera el limite de: "+pesoArchivoLimite+" MB","INFO", id_alerta, true,6000);
+                        $("#"+id_top).animate({scrollTop:"0px"});
+                    }
+                    $("#"+id_contenedor).find('button.fileinput-remove-button').trigger('click');
+                }
+            });
+        }
+
+        //MB esto tambien se tiene que aplicar a CV porque no inportan la base.html
+        //var pesoArchivoLimite = 10.00;
+        var pesoArchivoLimite = 10.00;
+    </script> 
+{% endblock %}
