@@ -1,0 +1,867 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block title %}AAIX - Configuración de Ubicación{% endblock %}
+
+{% block pagetitle %}
+Configuración de Ubicación
+{% endblock %}
+
+{% block addBreadcrumbElements %}
+
+<li>
+	<i class="ace-icon fa fa-file"></i>
+	<a href="#">Mantenimiento</a>
+</li>
+<li>
+	<i class="menu-icon fa fa-users"></i>
+	<a href="#">Ubicación</a>
+</li>
+<li class="active">
+	<i class="ace-icon fa fa-bars"></i>
+	<a href="#">Constancias de sueldo</a>
+</li>
+{% endblock %}
+
+{% block addExtraStyle %}
+
+<style type="text/css">
+    .selected{
+    	background-color: #ECF6CE;
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+{% if 1 == 1 %}
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="col-sm-12">
+			<label class="text-info"><b>Zona</b></label>	
+		</div>
+		<div class="col-sm-12">
+			<div class="table-header" style="clear:both;margin-top:1%;">
+				<label style="width:95%;">Seleccione una zona:</label>
+				<a style="float:right; margin-right: 1%; color:white;">
+				<i class="ace-icon fa fa-refresh" onclick="$('#dt_zona').DataTable().ajax.reload();"></i>
+				</a>
+			</div>
+			<table class="table table-bordered dataTable" id="dt_zona">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Nombre</th>
+						<th>Descripción</th>
+						<th>Controles</th>
+					</tr>
+				</thead>
+				<tbody>			
+					
+				</tbody>
+				</table>
+		</div>
+		<div></div><br></br><br></br><br></br><br></br><br></br>
+		<div class="col-sm-12">
+			<div class="col-sm-2">
+				<label class="text-info"><b>Nombre de zona: </b></label>			
+			</div>
+			<div class="col-sm-2">
+				<input class="nav-search-input formularioZona" id="nomZonaText" name="nomZonaText" type="text" style="width: 100%;max-width: 100%;">
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-2">
+				<label class="text-info"><b>Descripción de zona: </b></label>			
+			</div>
+			<div class="col-sm-5">
+				<input class="nav-search-input formularioZona" id="descZonaText" name="descZonaText" type="text" style="width: 100%;max-width: 100%;">
+			</div><br></br>
+			<div class="col-sm-12">
+				<label>
+					<input id="chk_activo_zona" name="form-field-checkbox" class="ace formularioZona" type="checkbox">
+					<span class="lbl"> &nbsp;&nbsp;&nbsp; Activo </span>
+				</label>					
+			</div>
+			<div class="col-sm-12 modal-footer center">
+				<form id='formReporte' action='' method='POST' target='_blank'>
+				
+				</form>
+				<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnGuardarZona">
+					<i class="ace-icon fa fa-floppy-o"></i>&nbsp;Guardar
+				</button>
+				<button type="button" class="btn_vrt_pantalla btn btn-primary my-tooltip-link" id="btnCrearZona">
+					<i class="fa fa-times"></i>&nbsp;Crear
+				</button>
+			</div>
+		</div>
+	</div>
+	<div>&nbsp;</div><br></br>
+	<div class="col-sm-12">
+		<div class="col-sm-12">
+			<div class="col-sm-2">
+				<label class="text-info"><b>Carro</b></label>
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-2">
+				<select class="form-control" id="cmbZonaCarro" name="cmbZonaCarro">
+					<option value="0">Elige una zona</option>
+					{{cmbZona|safe}}
+				</select>
+			</div>	
+		</div>
+		<div class="col-sm-12">
+			<div class="table-header" style="clear:both;margin-top:1%;">
+				<label style="width:95%;">Seleccione una carro:</label>
+				<a style="float:right; margin-right: 1%; color:white;">
+				<i class="ace-icon fa fa-refresh" onclick="$('#dt_carro').DataTable().ajax.reload();"></i>
+				</a>
+			</div>
+			<table class="table table-bordered dataTable" id="dt_carro">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Nombre</th>
+						<th>Descripción</th>
+						<th>Controles</th>
+					</tr>
+				</thead>
+				<tbody>			
+					
+				</tbody>
+				</table>
+		</div>
+		<div></div><br></br><br></br><br></br><br></br>
+		<div class="col-sm-12">
+			<div class="col-sm-2">
+				<label class="text-info"><b>Nombre de carro: </b></label>			
+			</div>
+			<div class="col-sm-2">
+				<input class="nav-search-input formularioCarro" id="nomCarroText" name="nomCarroText" type="text" style="width: 100%;max-width: 100%;">
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-2">
+				<label class="text-info"><b>Descripción de carro: </b></label>			
+			</div>
+			<div class="col-sm-5">
+				<input class="nav-search-input formularioCarro" id="descCarroText" name="descCarroText" type="text" style="width: 100%;max-width: 100%;">
+			</div><br></br>
+			<div class="col-sm-12">
+				<label>
+					<input id="chk_activo_carro" name="form-field-checkbox" class="ace formularioCarro" type="checkbox">
+					<span class="lbl"> &nbsp;&nbsp;&nbsp; Activo </span>
+				</label>					
+			</div>
+			<div class="col-sm-12 modal-footer center">
+				<form id='formReporte' action='' method='POST' target='_blank'>
+				
+				</form>
+				<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnGuardarCarro">
+					<i class="ace-icon fa fa-floppy-o"></i>&nbsp;Guardar
+				</button>
+				<button type="button" class="btn_vrt_pantalla btn btn-primary my-tooltip-link" id="btnCrearCarro">
+					<i class="fa fa-times"></i>&nbsp;Crear
+				</button>
+			</div>
+		</div>
+
+	</div>
+	<div>&nbsp;</div><br></br>
+	<div class="col-sm-12">
+		<div class="col-sm-12">
+			<div class="col-sm-2">
+				<label class="text-info"><b>Estante</b></label>
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-2">
+				<select class="form-control" id="cmbZonaEstante" name="cmbZonaEstante">
+					<option value="0">Elige una zona</option>
+					{{cmbZona|safe}}
+				</select>
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-2">
+				<select class="form-control" id="cmbCarroEstante" name="cmbCarroEstante">
+					<option value="0">Elige un carro</option>
+					
+				</select>
+			</div>		
+		</div>
+		<div class="col-sm-12">
+			<div class="table-header" style="clear:both;margin-top:1%;">
+				<label style="width:95%;">Seleccione una estante:</label>
+				<a style="float:right; margin-right: 1%; color:white;">
+				<i class="ace-icon fa fa-refresh" onclick="$('#dt_estante').DataTable().ajax.reload();"></i>
+				</a>
+			</div>
+			<table class="table table-bordered dataTable" id="dt_estante">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Nombre</th>
+						<th>Descripción</th>
+						<th>Controles</th>
+					</tr>
+				</thead>
+				<tbody>			
+					
+				</tbody>
+				</table>
+		</div>
+		<div></div><br></br><br></br><br></br><br></br>
+		<div class="col-sm-12">
+			<div class="col-sm-2">
+				<label class="text-info"><b>Nombre de estante: </b></label>			
+			</div>
+			<div class="col-sm-2">
+				<input class="nav-search-input formularioEstante" id="nomEstanteText" name="nomEstanteText" type="text" style="width: 100%;max-width: 100%;">
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-2">
+				<label class="text-info"><b>Descripción de estante: </b></label>			
+			</div>
+			<div class="col-sm-5">
+				<input class="nav-search-input formularioEstante" id="descEstanteText" name="descEstanteText" type="text" style="width: 100%;max-width: 100%;">
+			</div><br></br>
+			<div class="col-sm-12">
+				<label>
+					<input id="chk_activo_estante" name="form-field-checkbox" class="ace formularioEstante" type="checkbox">
+					<span class="lbl"> &nbsp;&nbsp;&nbsp; Activo </span>
+				</label>					
+			</div>
+			<div class="col-sm-12 modal-footer center">
+				<form id='formReporte' action='' method='POST' target='_blank'>
+				
+				</form>
+				<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnGuardarEstante">
+					<i class="ace-icon fa fa-floppy-o"></i>&nbsp;Guardar
+				</button>
+				<button type="button" class="btn_vrt_pantalla btn btn-primary my-tooltip-link" id="btnCrearEstante">
+					<i class="fa fa-times"></i>&nbsp;Crear
+				</button>
+			</div>
+		</div>
+
+	</div>
+	<div>&nbsp;</div><br></br>
+	<div class="col-sm-12">
+		<div class="col-sm-12">
+			<div class="col-sm-2">
+				<label class="text-info"><b>Bandeja</b></label>
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-2">
+				<select class="form-control" id="cmbZonaBandeja" name="cmbZonaBandeja">
+					<option value="0">Elige una zona</option>
+					{{cmbZona|safe}}
+				</select>
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-2">
+				<select class="form-control" id="cmbCarroBandeja" name="cmbCarroBandeja">
+					<option value="0">Elige un carro</option>
+				</select>
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-2">
+				<select class="form-control" id="cmbEstanteBandeja" name="cmbEstanteBandeja">
+					<option value="0">Elige un estante</option>
+				</select>
+			</div>	
+		</div>
+		<div class="col-sm-12">
+			<div class="table-header" style="clear:both;margin-top:1%;">
+				<label style="width:95%;">Seleccione una bandeja:</label>
+				<a style="float:right; margin-right: 1%; color:white;">
+				<i class="ace-icon fa fa-refresh" onclick="$('#dt_bandeja').DataTable().ajax.reload();"></i>
+				</a>
+			</div>
+			<table class="table table-bordered dataTable" id="dt_bandeja">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Nombre</th>
+						<th>Descripción</th>
+						<th>Controles</th>
+					</tr>
+				</thead>
+				<tbody>			
+					
+				</tbody>
+				</table>
+		</div>
+		<div></div><br></br><br></br><br></br><br></br>
+		<div class="col-sm-12">
+			<div class="col-sm-2">
+				<label class="text-info"><b>Nombre de bandeja: </b></label>			
+			</div>
+			<div class="col-sm-2">
+				<input class="nav-search-input formularioBandeja" id="nomBandejaText" name="nomBandejaText" type="text" style="width: 100%;max-width: 100%;">
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-2">
+				<label class="text-info"><b>Descripción de bandeja: </b></label>			
+			</div>
+			<div class="col-sm-5">
+				<input class="nav-search-input formularioBandeja" id="descBandejaText" name="descBandejaText" type="text" style="width: 100%;max-width: 100%;">
+			</div><br></br>
+			<div class="col-sm-12">
+				<label>
+					<input id="chk_activo_bandeja" name="form-field-checkbox" class="ace formularioBandeja" type="checkbox">
+					<span class="lbl"> &nbsp;&nbsp;&nbsp; Activo </span>
+				</label>					
+			</div>
+			<div class="col-sm-12 modal-footer center">
+				<form id='formReporte' action='' method='POST' target='_blank'>
+				
+				</form>
+				<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnGuardarBandeja">
+					<i class="ace-icon fa fa-floppy-o"></i>&nbsp;Guardar
+				</button>
+				<button type="button" class="btn_vrt_pantalla btn btn-primary my-tooltip-link" id="btnCrearBandeja">
+					<i class="fa fa-times"></i>&nbsp;Crear
+				</button>
+			</div>
+		</div>
+
+	</div>
+	
+</div>
+
+
+
+{% endif%}
+{% endblock %}
+
+
+{% block addJavascripts %} 
+{{ block.super }}
+<script type="text/javascript">
+{% if 1 == 1 %}
+
+var tok = "{{csrf_token}}";
+
+var dt_carro = null;
+var dt_estante = null;
+var dt_bandeja = null;
+
+llenarZonaDT();
+
+function llenarZonaDT(){
+
+	dt_zona = $('#dt_zona').DataTable( {
+		"ajax": {
+			"url": "{%url 'dt_ZonaDT' %}",
+			"type": "POST",
+			"data":  function( d ) {
+			d.csrfmiddlewaretoken = tok
+			},
+		    "dataSrc": function ( json ) {
+				for ( var i=0; i<json['data'].length ; i++ ) {
+					acciones = "";
+					var tabla=$('#dt_zona').DataTable();
+					// BOTONES
+					acciones += '<button type="button" name="btnVer" class="btn btn-xs btn-light my-tooltip-link" style="width: 30px;"><i class="ace-icon glyphicon glyphicon-eye-open"></i></button> ';
+					acciones += '<button type="button" name="btnEditar" class="btn btn-xs btn-primary my-tooltip-link" style="width: 30px;" ><i class="ace-icon fa fa-pencil"></i></button> ';
+					acciones += '<button type="button" name="btnEliminar" class="btn btn-xs btn-danger my-tooltip-link" style="width: 30px;" ><i class="ace-icon fa fa-trash"></i></button> ';
+
+					var fila=tabla.row.add( [
+						json['data'][i][0]
+						,json['data'][i][1]
+						,json['data'][i][2]
+						,acciones
+						,json['data'][i][3]
+						,json['data'][i][4]
+					]);
+				}
+				return json;
+			},
+		}
+		,"scrollX" : true
+	    ,"scrollCollapse" : true
+	    ,"paging" : true
+	    ,"searching" : false
+	    ,"pageLength" : 10
+	    ,"columnDefs" : [
+	        {
+	            "targets" : [ 0, 1, 2, 3]
+	           ,"visible" : true
+	           ,"searchable" : false
+	            ,"orderable" : false  
+	        },
+	        {
+	            "targets" : [ 4, 5]
+	           ,"visible" : false
+	           ,"searchable" : false
+	            ,"orderable" : false  
+	        },
+	    ],
+	    "language": {
+	       "lengthMenu": "Mostrando _MENU_ filas por página",
+	       "zeroRecords": "No se encontraron resultados",
+	       "info": "Mostrando página _PAGE_ de _PAGES_",
+	       "infoEmpty": "Mostrando página 0 de 0",
+	       "infoFiltered": "(filtrando de _MAX_ registros totales)",
+	       "oPaginate": {
+			   "sNext":     "Siguiente",
+			   "sPrevious": "Anterior"
+	   		},
+	    },
+	    "fnDrawCallback": function( oSettings ) {
+			$(".tooltip").css("display", "none");
+			$('.my-tooltip-link').attr('data-placement','bottom');
+			$('.my-tooltip-link').tooltip();
+		},
+	});
+}
+
+function llenarCarroDT(){
+	dt_carro = $('#dt_carro').DataTable( {
+		"ajax": {
+			"url": "{%url 'dt_CarroDT' %}",
+			"type": "POST",
+			"data":  function( d ) {
+				d.csrfmiddlewaretoken = tok
+				,d.zona = $("#cmbZonaCarro").val()
+			},
+		    "dataSrc": function ( json ) {
+				for ( var i=0; i<json['data'].length ; i++ ) {
+					acciones = "";
+					var tabla=$('#dt_carro').DataTable();
+					// BOTONES
+					acciones += '<button type="button" name="btnVer" class="btn btn-xs btn-light my-tooltip-link" style="width: 30px;"><i class="ace-icon glyphicon glyphicon-eye-open"></i></button> ';
+					acciones += '<button type="button" name="btnEditar" class="btn btn-xs btn-primary my-tooltip-link" style="width: 30px;" ><i class="ace-icon fa fa-pencil"></i></button> ';
+					acciones += '<button type="button" name="btnEliminar" class="btn btn-xs btn-danger my-tooltip-link" style="width: 30px;" ><i class="ace-icon fa fa-trash"></i></button> ';
+
+
+					var fila=tabla.row.add( [
+						json['data'][i][0]
+						,json['data'][i][1]
+						,json['data'][i][2]
+						,acciones
+						,json['data'][i][3]
+						,json['data'][i][4]
+					]);
+				}
+				return json;
+			},
+		}
+		,"scrollX" : true
+	    ,"scrollCollapse" : true
+	    ,"paging" : true
+	    ,"searching" : false
+	    ,"pageLength" : 10
+	    ,"columnDefs" : [
+	        {
+	            "targets" : [ 0, 1, 2, 3]
+	           ,"visible" : true
+	           ,"searchable" : false
+	            ,"orderable" : false  
+	        },
+	        {
+	            "targets" : [ 4, 5]
+	           ,"visible" : false
+	           ,"searchable" : false
+	            ,"orderable" : false  
+	        },
+	    ],
+	    "language": {
+	       "lengthMenu": "Mostrando _MENU_ filas por página",
+	       "zeroRecords": "No se encontraron resultados",
+	       "info": "Mostrando página _PAGE_ de _PAGES_",
+	       "infoEmpty": "Mostrando página 0 de 0",
+	       "infoFiltered": "(filtrando de _MAX_ registros totales)",
+	       "oPaginate": {
+			   "sNext":     "Siguiente",
+			   "sPrevious": "Anterior"
+	   		},
+	    },
+	    "fnDrawCallback": function( oSettings ) {
+			$(".tooltip").css("display", "none");
+			$('.my-tooltip-link').attr('data-placement','bottom');
+			$('.my-tooltip-link').tooltip();
+		},
+	});
+}
+
+function llenarEstanteDT(){
+	dt_carro = $('#dt_estante').DataTable( {
+		"ajax": {
+			"url": "{%url 'dt_EstanteDT' %}",
+			"type": "POST",
+			"data":  function( d ) {
+				d.csrfmiddlewaretoken = tok
+				,d.carro = $("#cmbCarroEstante").val()
+			},
+		    "dataSrc": function ( json ) {
+				for ( var i=0; i<json['data'].length ; i++ ) {
+					acciones = "";
+					var tabla=$('#dt_estante').DataTable();
+					// BOTONES
+					acciones += '<button type="button" name="btnVer" class="btn btn-xs btn-light my-tooltip-link" style="width: 30px;"><i class="ace-icon glyphicon glyphicon-eye-open"></i></button> ';
+					acciones += '<button type="button" name="btnEditar" class="btn btn-xs btn-primary my-tooltip-link" style="width: 30px;" ><i class="ace-icon fa fa-pencil"></i></button> ';
+					acciones += '<button type="button" name="btnEliminar" class="btn btn-xs btn-danger my-tooltip-link" style="width: 30px;" ><i class="ace-icon fa fa-trash"></i></button> ';
+
+					var fila=tabla.row.add( [
+						json['data'][i][0]
+						,json['data'][i][1]
+						,json['data'][i][2]
+						,acciones
+						,json['data'][i][3]
+						,json['data'][i][4]
+					]);
+				}
+				return json;
+			},
+		}
+		,"scrollX" : true
+	    ,"scrollCollapse" : true
+	    ,"paging" : true
+	    ,"searching" : false
+	    ,"pageLength" : 10
+	    ,"columnDefs" : [
+	        {
+	            "targets" : [ 0, 1, 2, 3]
+	           ,"visible" : true
+	           ,"searchable" : false
+	            ,"orderable" : false  
+	        },
+	        {
+	            "targets" : [ 4, 5]
+	           ,"visible" : false
+	           ,"searchable" : false
+	            ,"orderable" : false  
+	        },
+	    ],
+	    "language": {
+	       "lengthMenu": "Mostrando _MENU_ filas por página",
+	       "zeroRecords": "No se encontraron resultados",
+	       "info": "Mostrando página _PAGE_ de _PAGES_",
+	       "infoEmpty": "Mostrando página 0 de 0",
+	       "infoFiltered": "(filtrando de _MAX_ registros totales)",
+	       "oPaginate": {
+			   "sNext":     "Siguiente",
+			   "sPrevious": "Anterior"
+	   		},
+	    },
+	    "fnDrawCallback": function( oSettings ) {
+			$(".tooltip").css("display", "none");
+			$('.my-tooltip-link').attr('data-placement','bottom');
+			$('.my-tooltip-link').tooltip();
+		},
+	});
+}
+
+function llenarBandejaDT(){
+	dt_bandeja = $('#dt_bandeja').DataTable( {
+		"ajax": {
+			"url": "{%url 'dt_BandejaDT' %}",
+			"type": "POST",
+			"data":  function( d ) {
+				d.csrfmiddlewaretoken = tok
+				,d.estante = $("#cmbEstanteBandeja").val()
+			},
+		    "dataSrc": function ( json ) {
+				for ( var i=0; i<json['data'].length ; i++ ) {
+					acciones = "";
+					var tabla=$('#dt_bandeja').DataTable();
+					// BOTONES
+					acciones += '<button type="button" name="btnVer" class="btn btn-xs btn-light my-tooltip-link" style="width: 30px;"><i class="ace-icon glyphicon glyphicon-eye-open"></i></button> ';
+					acciones += '<button type="button" name="btnEditar" class="btn btn-xs btn-primary my-tooltip-link" style="width: 30px;" ><i class="ace-icon fa fa-pencil"></i></button> ';
+					acciones += '<button type="button" name="btnEliminar" class="btn btn-xs btn-danger my-tooltip-link" style="width: 30px;" ><i class="ace-icon fa fa-trash"></i></button> ';
+
+					var fila=tabla.row.add( [
+						json['data'][i][0]
+						,json['data'][i][1]
+						,json['data'][i][2]
+						,acciones
+						,json['data'][i][3]
+						,json['data'][i][4]
+					]);
+				}
+				return json;
+			},
+		}
+		,"scrollX" : true
+	    ,"scrollCollapse" : true
+	    ,"paging" : true
+	    ,"searching" : false
+	    ,"pageLength" : 10
+	    ,"columnDefs" : [
+	        {
+	            "targets" : [ 0, 1, 2, 3]
+	           ,"visible" : true
+	           ,"searchable" : false
+	            ,"orderable" : false  
+	        },
+	        {
+	            "targets" : [ 4, 5]
+	           ,"visible" : false
+	           ,"searchable" : false
+	            ,"orderable" : false  
+	        },
+	    ],
+	    "language": {
+	       "lengthMenu": "Mostrando _MENU_ filas por página",
+	       "zeroRecords": "No se encontraron resultados",
+	       "info": "Mostrando página _PAGE_ de _PAGES_",
+	       "infoEmpty": "Mostrando página 0 de 0",
+	       "infoFiltered": "(filtrando de _MAX_ registros totales)",
+	       "oPaginate": {
+			   "sNext":     "Siguiente",
+			   "sPrevious": "Anterior"
+	   		},
+	    },
+	    "fnDrawCallback": function( oSettings ) {
+			$(".tooltip").css("display", "none");
+			$('.my-tooltip-link').attr('data-placement','bottom');
+			$('.my-tooltip-link').tooltip();
+		},
+	});
+}
+
+
+$("#cmbZonaEstante").on('change', function(){
+	$("#cmbCarroEstante").empty();
+	jQuery.ajax({
+		url: "{%url 'llenarComboCarro'%}",
+		type: "POST",
+		global: false,
+		processData: false,
+		data: "csrfmiddlewaretoken="+"{{csrf_token}}"+"&gZona="+$("#cmbZonaEstante").val(),
+		async: false,
+		success: function(json){
+			//console.log(json['opciones']);
+			$("#cmbCarroEstante").append(json['opciones']);
+		}
+	});	
+});
+
+$("#cmbZonaBandeja").on('change', function(){
+	$("#cmbCarroBandeja").empty();
+	jQuery.ajax({
+		url: "{%url 'llenarComboCarro'%}",
+		type: "POST",
+		global: false,
+		processData: false,
+		data: "csrfmiddlewaretoken="+"{{csrf_token}}"+"&gZona="+$("#cmbZonaBandeja").val(),
+		async: false,
+		success: function(json){
+			//console.log(json['opciones']);
+			$("#cmbCarroBandeja").append(json['opciones']);
+		}
+	});	
+});
+
+$("#cmbCarroBandeja").on('change', function(){
+	$("#cmbEstanteBandeja").empty();
+	jQuery.ajax({
+		url: "{%url 'llenarComboEstante'%}",
+		type: "POST",
+		global: false,
+		processData: false,
+		data: "csrfmiddlewaretoken="+"{{csrf_token}}"+"&gCarro="+$("#cmbCarroBandeja").val(),
+		async: false,
+		success: function(json){
+			//console.log(json['opciones']);
+			$("#cmbEstanteBandeja").append(json['opciones']);
+		}
+	});	
+});
+
+$("#cmbZonaCarro").on('change', function(){
+	if(dt_carro == null){
+		llenarCarroDT();
+	}else{
+		dt_carro.ajax.reload();
+	}
+});
+
+$("#cmbCarroEstante").on('change', function(){
+	if(dt_estante == null){
+		llenarEstanteDT();
+	}else{
+		dt_estante.ajax.reload();
+	}
+});
+
+$("#cmbEstanteBandeja").on('change', function(){
+	if(dt_bandeja == null){
+		llenarBandejaDT();
+	}else{
+		dt_bandeja.ajax.reload();
+	}
+});
+
+//--- Funciones de ver
+// Zona
+$('#dt_zona').on('click', "[name=btnVer]", function(){
+	$('#dt_zona').DataTable().$('.selected').removeClass('selected');
+	$(this).parent().parent().addClass('selected');
+	var data = $('#dt_zona').DataTable().row('.selected').data();
+
+	$("#nomZonaText").val(data[1]);
+	$("#descZonaText").val(data[2]);
+	$("#chk_activo_zona").prop('checked', data[5]);
+	//-----------------------
+	$(".formularioZona").css("background-color","#eee");
+	$(".formularioZona").prop('disabled', true);
+	$("[name='chk_activo_zona']").prop('disabled', true);
+	
+});
+// Carro
+$('#dt_carro').on('click', "[name=btnVer]", function(){
+	$('#dt_carro').DataTable().$('.selected').removeClass('selected');
+	$(this).parent().parent().addClass('selected');
+	var data = $('#dt_carro').DataTable().row('.selected').data();
+
+	$("#nomCarroText").val(data[1]);
+	$("#descCarroText").val(data[2]);
+	$("#chk_activo_carro").prop('checked', data[5]);
+	//-----------------------
+	$(".formularioCarro").css("background-color","#eee");
+	$(".formularioCarro").prop('disabled', true);
+	$("[name='chk_activo_carro']").prop('disabled', true);
+	
+});
+// Estante
+$('#dt_estante').on('click', "[name=btnVer]", function(){
+	$('#dt_estante').DataTable().$('.selected').removeClass('selected');
+	$(this).parent().parent().addClass('selected');
+	var data = $('#dt_estante').DataTable().row('.selected').data();
+
+	$("#nomEstanteText").val(data[1]);
+	$("#descEstanteText").val(data[2]);
+	$("#chk_activo_estante").prop('checked', data[5]);
+	//-----------------------
+	$(".formularioEstante").css("background-color","#eee");
+	$(".formularioEstante").prop('disabled', true);
+	$("[name='chk_activo_estante']").prop('disabled', true);
+	
+});
+// Bandeja
+$('#dt_bandeja').on('click', "[name=btnVer]", function(){
+	$('#dt_bandeja').DataTable().$('.selected').removeClass('selected');
+	$(this).parent().parent().addClass('selected');
+	var data = $('#dt_bandeja').DataTable().row('.selected').data();
+
+	$("#nomBandejaText").val(data[1]);
+	$("#descBandejaText").val(data[2]);
+	$("#chk_activo_bandeja").prop('checked', data[5]);
+	//-----------------------
+	$(".formularioBandeja").css("background-color","#eee");
+	$(".formularioBandeja").prop('disabled', true);
+	$("[name='chk_activo_bandeja']").prop('disabled', true);
+	
+});
+
+//-- Funciones de editar
+// Zona
+$('#dt_zona').on('click', "[name=btnEditar]", function(){
+	$('#dt_zona').DataTable().$('.selected').removeClass('selected');
+	$(this).parent().parent().addClass('selected');
+	var data = $('#dt_zona').DataTable().row('.selected').data();
+	//Llenar formulario
+	$("#nomZonaText").val(data[1]);
+	$("#descZonaText").val(data[2]);
+	$("#chk_activo_zona").prop('checked', data[5]);
+
+	//habilitar
+	$(".formularioZona").css("background-color","#fff");
+	$(".formularioZona").prop('disabled', false);
+	$("[name='chk_activo_zona']").prop('disabled', false);
+
+});
+
+// Carro
+$('#dt_carro').on('click', "[name=btnEditar]", function(){
+	$('#dt_carro').DataTable().$('.selected').removeClass('selected');
+	$(this).parent().parent().addClass('selected');
+	var data = $('#dt_carro').DataTable().row('.selected').data();
+	//Llenar formulario
+	$("#nomCarroText").val(data[1]);
+	$("#descCarroText").val(data[2]);
+	$("#chk_activo_carro").prop('checked', data[5]);
+
+	//habilitar
+	$(".formularioCarro").css("background-color","#fff");
+	$(".formularioCarro").prop('disabled', false);
+	$("[name='chk_activo_carro']").prop('disabled', false);
+
+});
+
+//-- Boton guardar 
+// Zona
+$("#btnGuardarZona").on('click', function(){
+	var data = $('#dt_zona').DataTable().row('.selected').data();
+
+	jQuery.ajax({
+			url: "{% url 'editarZona' %}",
+			type: "POST",
+			processData: false,
+			//async: false,
+			data: "csrfmiddlewaretoken="+tok+"&id_zona="+data[4]+"&nombre_zona="+$("#nomZonaText").val()+"&descripcion_zona="+$("#descZonaText").val()+"&activo_zona="+$("#chk_activo_zona").is(":checked"),
+
+			success: function(json){
+				dt_zona.ajax.reload();
+			}
+	});
+});
+
+// Carro
+$("#btnGuardarCarro").on('click', function(){
+	var data = $('#dt_carro').DataTable().row('.selected').data();
+
+	jQuery.ajax({
+			url: "{% url 'editarCarro' %}",
+			type: "POST",
+			processData: false,
+			//async: false,
+			data: "csrfmiddlewaretoken="+tok+"&id_carro="+data[4]+"&nombre_carro="+$("#nomCarroText").val()+"&descripcion_carro="+$("#descCarroText").val()+"&activo_carro="+$("#chk_activo_carro").is(":checked"),
+
+			success: function(json){
+				dt_carro.ajax.reload();
+			}
+	});
+});
+
+//--- Boton crear
+$("#btnCrearZona").on('click', function(){
+	
+	jQuery.ajax({
+			url: "{% url 'crearZona' %}",
+			type: "POST",
+			processData: false,
+			//async: false,
+			data: "csrfmiddlewaretoken="+tok+"&nombre_zona="+$("#nomZonaText").val()+"&descripcion_zona="+$("#descZonaText").val()+"&activo_zona="+$("#chk_activo_zona").is(":checked"),
+
+			success: function(json){
+				dt_zona.ajax.reload();
+			}
+	});
+});
+
+$("#btnCrearCarro").on('click', function(){
+	
+	jQuery.ajax({
+			url: "{% url 'crearCarro' %}",
+			type: "POST",
+			processData: false,
+			//async: false,
+			data: "csrfmiddlewaretoken="+tok+"&nombre_carro="+$("#nomCarroText").val()+"&descripcion_carro="+$("#descCarroText").val()+"&activo_carro="+$("#chk_activo_carro").is(":checked")+"&id_zona="+$("#cmbZonaCarro").val(),
+
+			success: function(json){
+				dt_carro.ajax.reload();
+			}
+	});
+});
+	
+
+{%else%}
+     	 $(document).ready(function() {
+     	 	 $("#id_error_base").show();
+     	 });
+
+{% endif%}
+</script>
+{% endblock %}
