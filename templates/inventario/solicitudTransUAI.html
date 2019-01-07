@@ -1,0 +1,123 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+                                
+                            
+<h2>Revision de solicitud de transferencia de expedientes</h2>
+<br>
+<br>
+<br>
+<h4>B&uacute;squeda de solicitudes</h4>
+<form id = "busquedaSolicitudes">
+	<div align = "center">
+		<table style = "width:100%">
+			<tr>
+				<td>
+					C&oacute;digo de la solicitud:
+					<input type="text" class="input" id="bus_codigo"/>
+					<br>
+					<br>
+					Rango de fechas <br>Inicio:
+					<input type="text" class="input" id="bus_fechaini"/>
+					&nbsp; Fin:
+					<input type="text" class="input" id="bus_fechaini"/>
+					<br>
+					<br>
+					Estado de la solicitud
+					<br>
+					<select class="select" id="estado">
+						<option>[Estado]</option>
+						<option>[Estado]</option>
+						<option>[Estado]</option>
+						<option>[Estado]</option>
+					</select>
+
+				</td>
+			</tr>	
+		
+		</table>
+		<br>
+		<input type="submit" class="btn" value="Buscar">
+	</div>
+</form>
+<br>
+<br>
+<br>
+<p class="h4">Solicitudes registradas</p>
+<br>
+<div align = "center">
+	<!--Inicio tabla de busqueda-->
+	<table class="table-light" style="width: 90%" id="search_tab">
+	    <thead>
+	      <tr>
+		<th>Seleccionar</th> <th>C&oacute;digo solicitud</th> <th>Solicitante</th> <th>Unidad solicitante</th> <th>Motivo</th> <th>Cant. Expedientes</th> <th>Estado solicitud</th> <th>Acciones</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr> <td><input name="chk_row1" type="checkbox"></td> <td>000</td> <td>[Solicitante]</td> <td>[Unidad]</td> <td>[Motivo]</td> <td>000</td> <td>[Estado]</td> <td>[Acciones]</td>  </tr>
+	    </tbody>
+	</table>
+	<!--fin tabla de busqueda-->
+	<br>
+	<br>
+	<button class="btn">Resolver solicitud</button>
+	<button class="btn">Ver solicitud</button>
+</div>
+<!---->
+<!---->
+<br>
+<br>
+<br>
+<!---->
+<!--Creacion de nueva solicitud-->
+<div align = "center" id="datosSolicitud" style="width:100%">
+	<form id="datosSolicitud">
+	<p class="h4">Expedientes incluidos en la solicitud</p>
+	<!--Inicio tabla de expedientes en solicitud-->
+	<table class="table-light" style="width: 90%" id="sol_exp">
+	    <thead>
+	      <tr>
+		<th>Seleccionar</th> <th>C&oacute;digo</th> <th>Nombre</th> <th>Fechas extremas</th> <th>Prestamo autorizado</th> <th>Acciones</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr> <td><input name="chk_row1" type="checkbox"></td> <td>000</td> <td>[Nombre Expediente]</td> <td>[Fechas]</td> <td>[Autorizacion]</td> <td>000</td> <td>[Estado]</td> <td>[Acciones]</td>  </tr>
+	    </tbody>
+	</table>
+	<!--fin tabla de expedientes en solicitud-->
+	</form>
+	<br>
+	<br>
+</div>
+<br>
+<br>
+<br>
+<div align="left" style="width:100%" id="datosexp">
+	<form id="nuevoExp">
+		<b>Nombre del expediente:</b>&nbsp;
+		<input type="text" class="input" id="expnombre"/>
+		<br>
+		<b>Detalles del expediente:</b>&nbsp;
+		<input type="text" class="input" id="expdetalle"/>
+		<br>
+		<b>Fechas Extremas</b>
+		<br>
+		<b>inicio: </b>&nbsp;
+		<input type="text" class="input" id="fechaini"/>&nbsp;
+		<b>fin: </b>&nbsp;
+		<input type="text" class="input" id="fechafin"/>
+		<br>
+		<b>Descripcion</b>
+		<br>
+		<textarea class="textarea" id="descripcion" ></textarea>
+		<br>
+		<br>
+		<button class="btn">aceptar transferencia</button>
+		<button class="btn">Rechazar transferencia</button>
+		<button class="btn">Enviar para modificaci&oacute;n</button>
+	</form>
+</div>
+<br>
+<br>
+</div>
+{% endblock content %}
