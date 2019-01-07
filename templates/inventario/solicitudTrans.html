@@ -1,0 +1,311 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block title %}AAIX - Configuración de Ubicación{% endblock %}
+
+{% block pagetitle %}
+Solicitud de transferencia de expedientes
+{% endblock %}
+
+{% block content %}
+
+{% block addBreadcrumbElements %}
+
+<li>
+	<i class="ace-icon fa fa-file"></i>
+	<a href="#">Inicio</a>
+</li>
+<li>
+	<i class="menu-icon fa fa-users"></i>
+	<a href="#">Transferencias</a>
+</li>
+<li class="active">
+	<i class="ace-icon fa fa-bars"></i>
+	<a href="#">Solicitud de transferencias</a>
+</li>
+{% endblock %}                                
+
+{% block addExtraStyle %}
+
+<style type="text/css">
+    .selected{
+    	background-color: #ECF6CE;
+    }
+</style>
+
+<style type="text/css">
+    .busquedafondo{
+    	background-color: #DDDDDD;
+    }
+</style>
+
+
+{% endblock %}
+<br>
+<form id = "busquedaSolicitudes" class="busquedafondo">
+	<br>
+	<h4>B&uacute;squeda de solicitudes</h4>
+	<div align = "center" class = "busquedafondo">
+		<div class = "busquedafondo container">
+			<div class="row">
+				<div class="col-sm-6">
+					<br>
+					<b>C&oacute;digo de la solicitud:</b>
+					<input type="text" class="nav-search-input" id="bus_codigo"/>
+				</div>
+				<div class="col-sm-6" align="left">
+					<b>Rango de fechas</b> 
+					<br><b>Inicio:</b>
+					<div class="input-group">
+       					<div class="input-group-addon">
+        					<i class="fa fa-calendar">
+        					</i>
+       					</div>
+       					<input class="form-control" id="busqFechaIni" name="date" placeholder="DD/MM/YYYY" type="text"/>
+      				</div>
+					&nbsp; <b>Fin:</b>
+					<div class="input-group" align="left">
+       					<div class="input-group-addon">
+        					<i class="fa fa-calendar">
+        					</i>
+       					</div>
+       					<input class="form-control" id="busqFechaFin" name="date" placeholder="DD/MM/YYYY" type="text"/>
+      				</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnBuscarSolicitudTrans">
+			Buscar
+		</button>
+		<br>
+		<br>
+	</div>
+</form>
+<br>
+<br>
+<br>
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class="col-sm-12">
+			<label class="text-info"><b>Solicitudes de transferencia registradas</b></label>	
+		</div>
+		<!--Tabla de solicitudes de transferencia-->
+		<div class="col-sm-12">
+			<div class="table-header" style="clear:both;margin-top:1%;">
+				<label style="width:95%;">Seleccione una zona:</label>
+				<a style="float:right; margin-right: 1%; color:white;">
+				<i class="ace-icon fa fa-refresh" onclick="$('#dt_solicitudes').DataTable().ajax.reload();"></i>
+				</a>
+			</div>
+			<table class="table table-bordered dataTable" id="dt_solicitudes">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>C&oacute;digo solicitud<</th>
+						<th>Solicitante</th>
+						<th>Unidad solicitante</th>
+						<th>Motivo</th> 
+						<th>Cant. Expedientes</th> 
+						<th>Estado solicitud</th> 
+						<th>Controles</th>
+					</tr>
+				</thead>
+				<tbody>			
+					
+				</tbody>
+				</table>
+		</div>
+		<!--Fin tabla de solicitudes de transferencia-->
+		
+	</div>
+	<br>
+	<br>
+	<div class="col-sm-12" align="center">
+		<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnNuevaTransferencia">
+			Nueva Solicitud
+		</button>
+		<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnEnviarSolicitudTrans">
+			Enviar solicitudes seleccionadas
+		</button>	
+	</div>
+
+	<br>
+	<br>
+	<!--Inicia bloque de ingreso de expedientes-->
+	<div id="bloqueIngreso">
+		<div id="solicitudContainer" style="display:none">
+			<div class="col-sm-12">
+				<label class="text-info"><b>Datos de solicitud de transferencia</b></label>	
+			</div>
+
+			<div class="row">
+				<div class="col-sm-6">
+					<b>Nombre del solicitante:</b>
+					<br>
+					<input type="text" class="nav-search-input" id="nombreSolicitante"/>
+				</div>
+				<div class="col-sm-6">
+					<b>Unidad solicitante:</b>
+					<br>
+
+			  		<select class="form-control" id="unidadSolicitud">
+					  	<option value = "">Seleccione una unidad</option>
+					  	<option value = "">Unidad 1</option>
+					  	<option value = "">Unidad 2</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-8">
+					<br>
+					<b>Unidad solicitante:</b>
+					<br>
+					<textarea class="form-control" rows = "5" id="motivoSolicitud"></textarea>
+				</div>
+			</div>
+			<br>
+			<br>
+		
+			<!--Tabla de expedientes ingresados-->
+			<div class="col-sm-12">
+				<div class="table-header" style="clear:both;margin-top:1%;">
+					<label style="width:95%;">Seleccione un expediente:</label>
+					<a style="float:right; margin-right: 1%; color:white;">
+					<i class="ace-icon fa fa-refresh" onclick="$('#dt_expedientes').DataTable().ajax.reload();"></i>
+					</a>
+				</div>
+				<table class="table table-bordered dataTable" id="dt_expedientes">
+					<thead>
+						<tr>
+							<th>Seleccionar</th>
+							<th>Nombre</th>
+							<th>Serie/subserie</th>
+							<th>Fechas extremas</th>
+							<th>Motivo</th> 
+							<th>Estado</th> 
+							<th>Controles</th>
+						</tr>
+					</thead>
+					<tbody>			
+						No hay expedientes ingresados
+					</tbody>
+				</table>
+			</div>
+			<!--Fin tabla de expedientes ingresados-->
+
+<br>
+<br>
+			<div class="col-sm-12" align="center">
+				<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnNuevoExpediente">
+					Nuevo Expediente
+				</button>
+				<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnGuardarSolicitud">
+					Guardar Solicitud
+				</button>
+				<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnEnviarSolicitud">
+					Enviar Solicitud
+				</button>
+				<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnCancelarSolicitud">
+					Cancelar
+				</button>
+			</div>
+		</div>
+<br>
+<br>
+		<!--Formulario para ingresar nuevos expedientes-->
+		<div id="containerNuevoExp" style="display:none">
+			<form id="ingresoExpediente">
+				<div class="col-sm-12">
+					<label class="text-info"><b>Ingreso de expediente</b></label>	
+				</div>
+				<div class="col-sm-12" align="center">
+					<b>Nombre:</b>
+					<input type="text" class="nav-search-input" id="nombreExpediente"/>
+				</div>
+				<div class="col-sm-12" align="center">
+					<b>Fechas extremas:</b>&nbsp;
+					Desde:&nbsp;
+					<input type="text" class="nav-search-input" id="expFechaIni"/>&nbsp;
+					Hasta:&nbsp;
+					<input type="text" class="nav-search-input" id="expFechaFin"/>
+				</div>
+				<div class="col-sm-8">
+					<br>
+					<b>Descripci&oactue;n:</b>
+					<br>
+					<textarea class="form-control" rows = "5" id="descExpediente"></textarea>
+				</div>
+				<div class="col-sm-8">
+					<br>
+					<b>Series/Subseries:</b>
+					<br>
+					<textarea class="form-control" rows = "5" id="seriesSubseries"></textarea>
+				</div>
+				<div class="col-sm-12" align="center">
+					<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnAgregarExpediente">
+						Agregar Expediente
+					</button>
+					<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnCancelarExpediente">
+						Cancelar
+					</button>
+				</div>
+			</form>
+			<!--Fin formulario para ingresar nuevos expedientes-->
+		</div>
+	</div>
+	<!--Fin bloque de ingreso de expedientes-->
+</div>	
+<br>
+{% endblock content %}
+
+{% block addJavascripts %} 
+{{ block.super }}
+<script type="text/javascript">
+	var solicitudVisible = false;
+	var addExpedienteVisible = false;
+
+	jQuery(document).ready(function($){
+		//Mostrar el contenedor de creacion de transferencia
+		jQuery("#btnNuevaTransferencia").click(function($){
+			if(!(solicitudVisible)){
+				jQuery("#solicitudContainer").fadeToggle(1000);
+				solicitudVisible = true;
+			}
+			
+		});
+
+		//Ocultar el contenedor de creacion de transferencia
+		jQuery("#btnCancelarSolicitud").click(function($){
+			if(solicitudVisible){
+				jQuery("#solicitudContainer").fadeToggle(1000);
+				solicitudVisible = false;
+			}
+		});
+
+		//Mostrar el contenedor de creacion de expediente
+		jQuery("#btnNuevoExpediente").click(function($){
+			if(!(addExpedienteVisible)){
+				jQuery("#containerNuevoExp").fadeToggle(1000);
+				addExpedienteVisible = true;
+			}
+			
+		});
+
+		//Ocultar el contenedor de creacion de expediente
+		jQuery("#btnCancelarExpediente").click(function($){
+			if(addExpedienteVisible){
+				jQuery("#containerNuevoExp").fadeToggle(1000);
+				addExpedienteVisible = false;
+			}
+		});
+
+		//Ocultar el contenedor de creacion de expediente
+		jQuery("#btnAgregarExpediente").click(function($){
+			$("#dt_expedientes > tbody:last-child").append('<tr><td><label><input type="checkbox" value=""</label></td></tr>');
+		});
+
+	});
+</script>
+
+{% endblock addJavascripts %}
