@@ -13,6 +13,7 @@ from inventario.mantenimiento_ubicacion_views import editarZona
 from inventario.mantenimiento_ubicacion_views import crearZona
 from inventario.mantenimiento_ubicacion_views import editarCarro
 from inventario.mantenimiento_ubicacion_views import crearCarro
+from inventario.solicitud_transferencia_views import solicitudTrans
 
 urlpatterns = [
     url(r'^index$', index),
@@ -30,4 +31,7 @@ urlpatterns = [
     url(r'^crearZona/', crearZona, name='crearZona'),
     url(r'^editarCarro/', editarCarro, name='editarCarro'),
     url(r'^crearCarro/', crearCarro, name='crearCarro'),
+
+    #AMIRANDA - Solicitudes de transferencia
+   	url(r'^solicitudTrans$', solicitudTrans),
 ]
