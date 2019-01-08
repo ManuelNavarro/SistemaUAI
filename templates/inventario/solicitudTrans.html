@@ -93,7 +93,7 @@ Solicitud de transferencia de expedientes
 		<!--Tabla de solicitudes de transferencia-->
 		<div class="col-sm-12">
 			<div class="table-header" style="clear:both;margin-top:1%;">
-				<label style="width:95%;">Seleccione una zona:</label>
+				<label style="width:95%;">Seleccione una Transferencia:</label>
 				<a style="float:right; margin-right: 1%; color:white;">
 				<i class="ace-icon fa fa-refresh" onclick="$('#dt_solicitudes').DataTable().ajax.reload();"></i>
 				</a>
@@ -140,12 +140,12 @@ Solicitud de transferencia de expedientes
 			</div>
 
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-4">
 					<b>Nombre del solicitante:</b>
 					<br>
 					<input type="text" class="nav-search-input" id="nombreSolicitante"/>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-4">
 					<b>Unidad solicitante:</b>
 					<br>
 
@@ -159,7 +159,7 @@ Solicitud de transferencia de expedientes
 			<div class="row">
 				<div class="col-sm-8">
 					<br>
-					<b>Unidad solicitante:</b>
+					<b>Motivo de solicitud:</b>
 					<br>
 					<textarea class="form-control" rows = "5" id="motivoSolicitud"></textarea>
 				</div>
@@ -181,9 +181,8 @@ Solicitud de transferencia de expedientes
 							<th>Seleccionar</th>
 							<th>Nombre</th>
 							<th>Serie/subserie</th>
-							<th>Fechas extremas</th>
-							<th>Motivo</th> 
-							<th>Estado</th> 
+							<th>Fechas inicio</th>
+							<th>Fechas fin</th>
 							<th>Controles</th>
 						</tr>
 					</thead>
@@ -243,7 +242,7 @@ Solicitud de transferencia de expedientes
 					<textarea class="form-control" rows = "5" id="seriesSubseries"></textarea>
 				</div>
 				<div class="col-sm-12" align="center">
-					<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnAgregarExpediente">
+					<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnAgregarExpediente" onclick="agregarExpediente()">
 						Agregar Expediente
 					</button>
 					<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnCancelarExpediente">
@@ -301,11 +300,44 @@ Solicitud de transferencia de expedientes
 		});
 
 		//Ocultar el contenedor de creacion de expediente
-		jQuery("#btnAgregarExpediente").click(function($){
-			$("#dt_expedientes > tbody:last-child").append('<tr><td><label><input type="checkbox" value=""</label></td></tr>');
-		});
+		//jQuery("#btnAgregarExpediente").click(function($){
+		//	$("#dt_expedientes > tbody:last-child").append('<tr><td><label><input type="checkbox" value=""</label></td></tr>');
+		//});
 
 	});
+
+	function agregarExpediente(){
+		var tableRef = document.getElementById('dt_expedientes').getElementsByTagName('tbody')[0];
+		var newRow   = tableRef.insertRow(tableRef.rows.length);
+
+
+		  // Insert a cell in the row at index 0
+		  var newCell  = newRow.insertCell(0);
+		  var checkElement  = document.createElement('input');
+		  checkElement.type = 'checkbox';
+		  newCell.appendChild(checkElement);
+
+		// Insertando el nombre a la tabla
+		var newCell  = newRow.insertCell(1);
+		var newText  = document.createTextNode(document.getElementById('nombreExpediente').value);
+  		newCell.appendChild(newText);
+
+  		// Insertando el nombre a la tabla
+		var serCell  = newRow.insertCell(2);
+		var serText  = document.createTextNode(document.getElementById('seriesSubseries').value);
+  		serCell.appendChild(serText);
+
+  		// Insertando fecha extrema inicio a la tabla
+		var finiCell  = newRow.insertCell(3);
+		var finiText  = document.createTextNode(document.getElementById('expFechaIni').value);
+  		finiCell.appendChild(finiText);
+
+  		// Insertando fecha extrema fin a la tabla
+		var fifiCell  = newRow.insertCell(4);
+		var fifiText  = document.createTextNode(document.getElementById('expFechaFin').value);
+  		fifiCell.appendChild(fifiText);
+	}
 </script>
+
 
 {% endblock addJavascripts %}
