@@ -17,6 +17,7 @@ from inventario.solicitud_transferencia_views import solicitudTrans
 from inventario.solicitud_transferenciaUAI_views import solicitudTransUAI
 from inventario.solicitud_prestamoUAI_views import solicitudPrestamoUAI
 from inventario.solicitud_prestamo_views import solicitudPrestamo
+from inventario.configuracion_accesos import ConfiguracionAccesos, dt_busquedaRoles, llenarComboPuestoUnidad
 
 urlpatterns = [
     url(r'^index$', index),
@@ -46,4 +47,9 @@ urlpatterns = [
 
    	#AMIRANDA - Solicitudes de prestamo UAI
    	url(r'^solicitudPrestamoUAI$',solicitudPrestamoUAI),
+
+   	#AMIRANDA - Configuracion de accesos
+   	url(r'^configuracionAccesos/$',ConfiguracionAccesos, name='ConfiguracionAccessos'),
+   	url(r'^dt_busquedaRoles/$', dt_busquedaRoles, name='dt_busquedaRoles'),
+   	url(r'^llenarComboPuestoUnidad/$', llenarComboPuestoUnidad, name ='llenarComboPuestoUnidad'),
 ]
