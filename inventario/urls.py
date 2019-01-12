@@ -19,6 +19,11 @@ from inventario.mantenimiento_ubicacion_views import crearEstante
 from inventario.mantenimiento_ubicacion_views import crearBandeja
 
 from inventario.ingreso_expediente_views import IngresoExpedienteViews
+from inventario.solicitud_transferencia_views import solicitudTrans, llenarComboUnidad, llenarTablaBusqueda, insertarExpediente
+from inventario.solicitud_transferenciaUAI_views import solicitudTransUAI
+from inventario.solicitud_prestamoUAI_views import solicitudPrestamoUAI
+from inventario.solicitud_prestamo_views import solicitudPrestamo
+from inventario.configuracion_accesos import ConfiguracionAccesos, dt_busquedaRoles, llenarComboPuestoUnidad, dt_usuarioRolesDT, dt_rolesDisponiblesDT, agregarRol
 
 
 urlpatterns = [
