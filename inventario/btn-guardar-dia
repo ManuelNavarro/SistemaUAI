@@ -1,0 +1,76 @@
+$("#btn-guardar-dia").on('click', function(){
+	var ERROR_ROLLBACK 	= false;
+	if($('#input_dias_extras_individual').datepicker('getFormattedDate')!=""){	
+		var hora_inicio_txt = $('#txt_hora_inicio').val();
+		var hora_fin_txt 	= $('#txt_hora_fin').val();
+		fechaList 					= $('#input_dias_extras_individual').datepicker('getFormattedDate')
+		hora_inicio_seleccionada 	= new Date(fechaList+' '+hora_inicio_txt);
+		hora_fin_seleccionada		= new Date(fechaList+' '+hora_fin_txt);
+		if(hora_fin_seleccionada>hora_inicio_seleccionada){
+			if(calcularCantidadHoras(hora_inicio_seleccionada,hora_fin_seleccionada)>=1){				
+				if( validarExistenciaTrabajadorHoraJ($('#empleado_id_mb').val(),hora_inicio_seleccionada,hora_fin_seleccionada,$('#dt_detalleHorasExtra').DataTable().row('.selected').data()[ index_id_DHE ]) != true ){
+					if( validarExistenciaTrabajadorHoraB($('#empleado_id_mb').val(),hora_inicio_seleccionada,hora_fin_seleccionada,$('#dt_detalleHorasExtra').DataTable().row('.selected').data()[ index_id_DHE ]) != true ){
+						arrayFechas = crearRangoFecha(fechaList,hora_inicio_seleccionada,hora_fin_seleccionada);
+						for(j=0;j<arrayFechas.length;j++){
+							arrayFechas = crearRangoFecha(fechaList,hora_inicio_seleccionada,hora_fin_seleccionada);
+							for(j=0;j<arrayFechas.length;j++){
+								row = crearNuevoDetalleHora(arrayFechas[j],fechaList);
+								
+								acciones = '<button type="button" name="btnEditarHora" class="btn btn-xs btn-info my-tooltip-link" title="" style="width: 30px;" data-placement="bottom" data-original-title="Editar"><i class="fa fa-pencil bigger-120"></i></button> '
+								acciones += '<button type="button" name="btnEliminarHora" class="btn btn-xs btn-danger my-tooltip-link" title="" style="width: 30px;" data-placement="bottom" data-original-title="Eliminar"><i class="fa fa-trash bigger-120"></i></button>'
+								
+								if(row['nocturno']!='N/A' && $("#chkNocturnidades").is(":checked")){
+									row['nocturno'] = '<i class="ace-icon fa fa-moon-o"></i>'+row['nocturno']
+								}
+
+								if(j == arrayFechas.length - 1){
+									var update = $('#dt_detalleHorasExtra').DataTable().row('.selected').data();
+									update[ index_fecha_DHE ]  		= row['fecha_seleccionada'];
+									update[ index_diurna_DHE ] 		= row['diurno'];
+									update[ index_diurna_cant_DHE ]	= row['cantidad_diurno'];
+									update[ index_nocturna_DHE ] 	= row['nocturno'];
+									update[ index_nocturna_cant_DHE]= row['cantidad_nocturno'];
+									update[ index_acciones_DHE] 	= acciones,
+									update[ index_fecha_inicio_DHE] = row['fecha_inicio'];
+									update[ index_fecha_fin_DHE] 	= row['fecha_fin'];
+									$('#dt_detalleHorasExtra').DataTable().row('.selected').data( update ).draw();
+								}else{
+									var fila = dt_detalleHorasExtra.row.add([
+										row['fecha_seleccionada']
+										,row['diurno']
+										,row['cantidad_diurno']
+										,row['nocturno']
+										,row['cantidad_nocturno']
+										,acciones
+										,row['fecha_inicio']
+										,row['fecha_fin']
+										,'J'+(id_tabla_detalle_hora++)
+									]).draw(false).node();
+									$(fila).addClass('modificado');
+								}
+							}
+						}
+					}else{
+						create_alert(misMensajesERROR[9],"ERROR","alerta_detalle_horas",true,5000);ERROR_ROLLBACK=true;
+					}
+				}else{
+					create_alert(misMensajesERROR[3],"ERROR","alerta_detalle_horas",true,5000);ERROR_ROLLBACK=true;
+				}
+			}else{
+				create_alert(misMensajesERROR[4],"ERROR","alerta_detalle_horas",true,5000);ERROR_ROLLBACK=true;
+			}
+		}else{
+			create_alert(misMensajesERROR[2],"ERROR","alerta_detalle_horas",true,5000);ERROR_ROLLBACK=true;
+		}
+	}else{
+		create_alert(misMensajesERROR[1],"ERROR","alerta_detalle_horas",true,5000);ERROR_ROLLBACK=true;
+	}
+
+	if(ERROR_ROLLBACK){
+		dt_detalleHorasExtra.rows('.modificado').remove().draw( false );
+	}else{
+		dt_detalleHorasExtra.$('.modificado').removeClass('modificado');
+		clear_hora();
+		modo_nuevo_horas();
+	}
+});

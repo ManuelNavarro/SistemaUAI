@@ -1,0 +1,423 @@
+{% extends 'base/base.html' %}
+{% load staticfiles %}
+{% block title %}AAIX - Ingreso de expedientes {% endblock %}
+
+{% block pagetitle %}
+Ingreso de expedientes a transferir
+{% endblock %}
+
+{% block addBreadcrumbElements %}
+
+<li>
+	<i class="ace-icon fa fa-file"></i>
+	<a href="#">Expediente</a>
+</li>
+<li>
+	<i class="menu-icon fa fa-users"></i>
+	<a href="#">Ingreso de expedientes</a>
+</li>
+<li class="active">
+	<i class="ace-icon fa fa-bars"></i>
+	<a href="#">Constancias de sueldo</a>
+</li>
+{% endblock %}
+
+{% block addExtraStyle %}
+
+<style type="text/css">
+    .selected{
+    	background-color: #ECF6CE;
+    }
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+{% if 1 == 1 %}
+<!--áéíóúñÁÉÍÓÚÑ-->
+<div class="row">
+	<div class="col-sm-12 modal-footer center">
+		<div class="col-sm-12" align="left">
+			<label class="text-info"><b>Búsqueda</b></label>	
+		</div>
+		<div class="col-sm-12">
+			<div class="col-sm-1">
+				<br>
+				<label class="text-info">Código de solicitud: </label>
+			</div>
+			<div class="col-sm-1">
+				<br>
+				<input type="text" name="txt_codigo_f1">
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-9">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-3" align="center">
+					<label class="">Inicio</label>	
+				</div>
+				<div class="col-sm-2"></div>
+				<div class="col-sm-3" align="center">
+					<label class="">Fin</label>
+				</div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-3">
+					<label class="text-info">Rango de fechas de solicitud: </label>
+				</div>
+				<div class="col-sm-3">
+					<div class="input-group date">
+						<input class="form-control" data-date-format="dd-mm-yyyy" id="txt_inicio_f1" type="text">
+						<span id="txt_inicio_f1_span" class="input-group-addon" onclick="$('#txt_inicio_f1').datepicker('show');">
+						<i class="fa fa-calendar bigger-110"></i>
+						</span>
+					</div>
+				</div>
+				<div class="col-sm-2"></div>
+				<div class="col-sm-3">
+					<div class="input-group date">
+						<input class="form-control" data-date-format="dd-mm-yyyy" id="txt_fin_f1" type="text">
+						<span id="txt_fin_f1_span" class="input-group-addon" onclick="$('#txt_fin_f1').datepicker('show');">
+						<i class="fa fa-calendar bigger-110"></i>
+						</span>
+					</div>
+				</div>
+				<div class="col-sm-1"></div>
+			</div>
+		</div><br></br><br></br><br></br>
+		<div class="col-sm-12">
+			<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btn_buscar_f1">
+					<i class="ui-icon ace-icon fa fa-search"></i>&nbsp;Buscar
+			</button>
+		</div>
+	</div><br></br>
+	<div class="col-sm-12">
+			<div class="table-header" style="clear:both;margin-top:1%;">
+				<label style="width:95%;">Solicitudes registradas</label>
+				<a style="float:right; margin-right: 1%; color:white;">
+				<i class="ace-icon fa fa-refresh" onclick="$('#dt_solicitudes_registradas').DataTable().ajax.reload();"></i>
+				</a>
+			</div>
+			<table class="table table-bordered dataTable" id="dt_solicitudes_registradas">
+				<thead>
+					<tr>
+						<th>Código de solicitud</th>
+						<th>Fecha de solicitud</th>
+						<th>Solicitante</th>
+						<th>Unidad solicitante</th>
+						<th>Cantidad de expedientes</th>
+						<th>Estado de solicitud</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>			
+					
+				</tbody>
+				</table>
+	</div>
+	<div> <br></br><br></br><br></br> </div>
+	<div class="col-sm-12 modal-footer center">
+		<div class="col-sm-12" align="left">
+			<label class="text-info"><b>Búsqueda</b></label>	
+		</div>
+		<div class="col-sm-12">
+			<div class="col-sm-1">
+				<br>
+				<label class="text-info">Código de solicitud: </label>
+			</div>
+			<div class="col-sm-1">
+				<br>
+				<input type="text" name="txt_codigo_f2">
+			</div>
+			<div class="col-sm-1"></div>
+			<div class="col-sm-9">
+				<div class="col-sm-3"></div>
+				<div class="col-sm-3" align="center">
+					<label class="">Inicio</label>	
+				</div>
+				<div class="col-sm-2"></div>
+				<div class="col-sm-3" align="center">
+					<label class="">Fin</label>
+				</div>
+				<div class="col-sm-1"></div>
+				<div class="col-sm-3">
+					<label class="text-info">Rango de fechas de solicitud: </label>
+				</div>
+				<div class="col-sm-3">
+					<div class="input-group date">
+						<input class="form-control" data-date-format="dd-mm-yyyy" id="txt_inicio_f2" type="text">
+						<span id="txt_inicio_f2_span" class="input-group-addon" onclick="$('#txt_inicio_f2').datepicker('show');">
+						<i class="fa fa-calendar bigger-110"></i>
+						</span>
+					</div>
+				</div>
+				<div class="col-sm-2"></div>
+				<div class="col-sm-3">
+					<div class="input-group date">
+						<input class="form-control" data-date-format="dd-mm-yyyy" id="txt_fin_f2" type="text">
+						<span id="txt_fin_f2_span" class="input-group-addon" onclick="$('#txt_fin_f2').datepicker('show');">
+						<i class="fa fa-calendar bigger-110"></i>
+						</span>
+					</div>
+				</div>
+				<div class="col-sm-1"></div>
+			</div>
+		</div><br></br><br></br><br></br>
+		<div class="col-sm-12">
+			<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btn_buscar_f2">
+					<i class="ui-icon ace-icon fa fa-search"></i>&nbsp;Buscar
+			</button>
+		</div>
+	</div><br></br>
+	<div class="col-sm-12">
+			<div class="table-header" style="clear:both;margin-top:1%;">
+				<label style="width:95%;">Expedientes</label>
+				<a style="float:right; margin-right: 1%; color:white;">
+				<i class="ace-icon fa fa-refresh" onclick="$('#dt_expedientes').DataTable().ajax.reload();"></i>
+				</a>
+			</div>
+			<table class="table table-bordered dataTable" id="dt_expedientes">
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>Series</th>
+						<th>Fechas extremas</th>
+						<th>Detalle Expediente</th>
+						<th>Descripción</th>
+						<th>Estado</th>
+						<th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>			
+					
+				</tbody>
+				</table>
+	</div>
+	<div>&nbsp;</div><br><br><br>
+	<div class="col-sm-12">
+		<label class="text-info"><b>Datos de expediente<b></label>
+	</div>
+	<div class="col-sm-12">
+		<div class="col-sm-3">
+			<div class="col-sm-12">
+				<label class="text-info">Nombre expediente:</label>
+			</div>
+			<div class="col-sm-12">
+				<input class="nav-search-input" id="nomExpedienteText" name="nomExpedienteText" type="text" style="width: 100%;max-width: 100%;">
+			</div>
+			<div>&nbsp;</div><br>
+			<div class="col-sm-12">
+				<label class="text-info">Fechas extremas:</label>
+			</div>
+			<div class="col-sm-12">
+				<label>Inicio</label>
+			</div>
+			<div class="col-sm-10">
+				<div class="input-group" style="width: 50%" onclick="$('#txtFechaInicio').datepicker('show');">
+					<span class="input-group-addon">
+					<i class="ace-icon fa fa-calendar blue"></i>
+					</span>
+					<input id="txtFechaInicio" name="txtFechaInicio" type="text">
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<label>Fin</label>
+			</div>
+			<div class="col-sm-10">
+				<div class="input-group" style="width: 50%" onclick="$('#txtFechaFin').datepicker('show');">
+					<span class="input-group-addon">
+					<i class="ace-icon fa fa-calendar blue"></i>
+					</span>
+					<input id="txtFechaFin" name="txtFechaFin" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="col-sm-12">
+				<label class="text-info">Descripción de expediente:</label>
+			</div>
+			<div class="col-sm-12">
+				<input class="nav-search-input" id="descExpedienteText" name="descExpedienteText" type="text" style="width: 100%;max-width: 100%;height: 100px">
+			</div>
+			<div>&nbsp;</div><br>
+			<div class="col-sm-12">
+				<label class="text-info">Detalles de expediente:</label>
+			</div>
+			<div class="col-sm-12">
+				<input class="nav-search-input" id="detaExpedienteText" name="detaExpedienteText" type="text" style="width: 100%;max-width: 100%;height: 100px">
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="col-sm-12">
+				<label class="text-info">Series:</label>
+			</div>
+			<div class="col-sm-12">
+				<div class="treeview">
+        			<!--Aqui va el arbol de las series-->
+    			</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-12 modal-footer center">
+		<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnAgregarExpediente">
+			<i class="ace-icon"></i>&nbsp;Agregar Expediente
+		</button>
+		<button type="button" class="btn_vrt_pantalla btn btn-primary" id="btnSolicitarTransferencia">
+			<i class="ace-icon"></i>&nbsp;Solicitar Transferencia
+		</button>
+		<button type="button" class="btn_vrt_pantalla btn btn-gray" id="btnLimpiarExpediente">
+			<i class="ace-icon"></i>&nbsp;Limpiar
+		</button>				
+	</div>
+</div>
+
+{% endif%}
+{% endblock %}
+
+{% block addJavascripts %} 
+{{ block.super }}
+
+<!-- jQuery 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+-->
+<!-- plugin -->
+    <script>
+        var treeViewData = [
+        	{{dataSeries|safe}}
+            /*{ 'Id' : 0, 'Title' : 'My Tree','ParentId' : null },
+            { 'Id' : 2, 'Title' : '1 - Proyección social', 'ParentId' : 1 },
+            { 'Id' : 3, 'Title' : '2 - InvestigacióN social', 'ParentId' : 1 },
+            { 'Id' : 4, 'Title' : '3 - Docencia', 'ParentId' : 1 },
+            { 'Id' : 5, 'Title' : '1.1 - Lineamientos de proyección social', 'ParentId' : 2 },
+            { 'Id' : 6, 'Title' : '1.2 - Propuestas estrategicas de incidencia para la transformación social', 'ParentId' : 2 },
+            { 'Id' : 7, 'Title' : '2.1 - Agenda de Investigación', 'ParentId' : 3 },
+            { 'Id' : 8, 'Title' : '2.2 - Opinion publica', 'ParentId' : 3 },
+            { 'Id' : 9, 'Title' : '2.2 - Investigaciones ejecutadas', 'ParentId' : 3 },
+            { 'Id' : 10, 'Title' : '3.1 - Planes y programas de estudio (Pregrado, postgrado y formacion continua)', 'ParentId' : 4 },
+            { 'Id' : 11, 'Title' : '3.2 - Programas de materias', 'ParentId' : 4 },
+            { 'Id' : 12, 'Title' : '3.2.1 - Evaluaciones', 'ParentId' : 11 },
+            { 'Id' : 13, 'Title' : '3.2.2 - Cuadernos y materiales de catedra', 'ParentId' : 11 },
+            { 'Id' : 14, 'Title' : '3.2.3 - Direccion de trabajos de graduacion', 'ParentId' : 11 },
+            { 'Id' : 15, 'Title' : '3.2.3.1 - Prueba', 'ParentId' : 14 },*/
+        ];
+
+        console.log(treeViewData);
+
+        var selectedItemIds = [7,8,9];
+        // set settings
+        var artaraxTreeView = $.artaraxTreeView({
+            jsonData: treeViewData,
+            selectedIds: selectedItemIds, // just use on update mode (when you run tree view by 'loadTreeViewOnUpdate()' function)
+            mode: "",
+            //updateCallBack: onUpdate,
+            //deleteCallBack: onDelete
+          // ,isDisplayChildren: false // use this to collapse all nodes on load (it works just on insert mode, when you run tree view by 'loadTreeViewOnInsert()' function)
+        });
+        // load treeview
+         artaraxTreeView.loadTreeViewOnInsert(1); // 1 is the root id
+        // use above line on insert mode, for update mode use below line
+        // artaraxTreeView.loadTreeViewOnUpdate(1);
+        $("#btn").click(function(){
+            var selectedIds = artaraxTreeView.getSelectedIds();
+            alert(JSON.stringify(selectedIds));
+        });
+
+        function onUpdate(obj){
+            // save data into db here
+            alert('onUpdate executed >> selected object is >>' + JSON.stringify(obj));
+        }
+
+        function onDelete(obj){
+            // save data into db here
+            alert('onDelete executed >> selected object is >>' + JSON.stringify(obj));
+        }
+
+    </script>
+
+
+<script type="text/javascript">
+{% if 1 == 1 %}
+
+//var dt_expedientes 		=	null;
+
+var tok = "{{csrf_token}}";
+
+$('#dt_detalleHorasExtra').DataTable().ajax.reload();
+$('#dt_detalleHorasExtra').DataTable().draw();
+
+//$('#txtFechaInicio').val(now());
+
+$("#txtFechaInicio").datepicker({
+format: "dd-mm-yyyy",
+//startDate: "01-2004",
+//endDate: "{{anhomes_vigente}}",
+startView: 1,
+minViewMode: 1,
+maxViewMode: 1,//2,
+todayHighlight: true,
+autoclose: true
+});
+
+$("#txtFechaFin").trigger('change');
+
+//$('#txtFechaFin').val(now());
+
+$("#txtFechaFin").datepicker({
+format: "dd-mm-yyyy",
+//startDate: "01-2004",
+//endDate: "{{anhomes_vigente}}",
+startView: 1,
+minViewMode: 1,
+maxViewMode: 1,//2,
+todayHighlight: true,
+autoclose: true
+});
+
+$("#txtFechaFin").trigger('change');
+/*
+$("#btnAgregarExpediente").on('click', function(){
+	var ERROR_ROLLBACK 	= false;
+	acciones = '<button type="button" name="btnVer" class="btn btn-xs btn-light my-tooltip-link" style="width: 30px;"><i class="ace-icon glyphicon glyphicon-eye-open"></i></button> ';
+	acciones += '<button type="button" name="btnEditar" class="btn btn-xs btn-primary my-tooltip-link" style="width: 30px;" ><i class="ace-icon fa fa-pencil"></i></button> ';
+	acciones += '<button type="button" name="btnEliminar" class="btn btn-xs btn-danger my-tooltip-link" style="width: 30px;" ><i class="ace-icon fa fa-trash"></i></button> ';
+
+	
+	var fila = dt_expedientes.row.add([
+		$("#nomExpedienteText").val()
+		,artaraxTreeView.getSelectedIds()
+		,$("#txtFechaInicio").val()+" a "+$("#txtFechaFin").val()
+		,$("#detaExpedienteText").val()
+		,$("#descExpedienteText").val()
+		,"Activo"
+		,acciones
+	]).draw(false).node();
+	$(fila).addClass('modificado');
+
+	if(ERROR_ROLLBACK){
+		dt_detalleHorasExtra.rows('.modificado').remove().draw( false );
+	}else{
+		dt_detalleHorasExtra.$('.modificado').removeClass('modificado');
+		//clear_hora();
+		
+	}
+
+
+	$('#dt_detalleHorasExtra').DataTable().ajax.reload();
+	$('#dt_detalleHorasExtra').DataTable().draw();
+
+});
+
+
+$(window).resize(function() {
+	$('#dt_registroHorasExtra').DataTable().draw();
+	$('#dt_detalleHorasExtra').DataTable().draw();
+});
+*/
+
+{%else%}
+     	 $(document).ready(function() {
+     	 	 $("#id_error_base").show();
+     	 });
+
+{% endif%}
+</script>
+{% endblock %}

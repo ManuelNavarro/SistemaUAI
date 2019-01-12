@@ -210,6 +210,50 @@ def editarCarro(request):
 
 	return HttpResponse(json.dumps('exito'), content_type = 'application/json')
 
+def editarEstante(request):
+	cursor = connection.cursor()
+
+	str_query = """
+					UPDATE inventario_estante set "nombreEstante" = %(nombre)s, "descripcionEstante" = %(descripcion)s, activo = %(activo)s
+					where "idEstante" = %(id)s;
+ 
+				"""
+	
+	parametros = {
+		"id" : int(request.POST['id'])
+		,"nombre" : (request.POST['nombre']) if request.POST['nombre'] not in [None,''] else ''
+		,"descripcion" : (request.POST['descripcion']) if request.POST['descripcion'] not in [None,''] else ''
+		,"activo" : bool(request.POST['activo']) 
+	}
+
+	cursor.execute(str_query, parametros)
+	
+	cursor.close()
+
+	return HttpResponse(json.dumps('exito'), content_type = 'application/json')
+
+def editarBandeja(request):
+	cursor = connection.cursor()
+
+	str_query = """
+					UPDATE inventario_bandeja set "nombreBandeja" = %(nombre)s, "descripcionBandeja" = %(descripcion)s, activo = %(activo)s
+					where "idBandeja" = %(id)s;
+ 
+				"""
+	
+	parametros = {
+		"id" : int(request.POST['id'])
+		,"nombre" : (request.POST['nombre']) if request.POST['nombre'] not in [None,''] else ''
+		,"descripcion" : (request.POST['descripcion']) if request.POST['descripcion'] not in [None,''] else ''
+		,"activo" : bool(request.POST['activo']) 
+	}
+
+	cursor.execute(str_query, parametros)
+	
+	cursor.close()
+
+	return HttpResponse(json.dumps('exito'), content_type = 'application/json')
+
 
 def crearZona(request):
 	cursor = connection.cursor()
@@ -244,6 +288,48 @@ def crearCarro(request):
 		,"descripcion_carro" : (request.POST['descripcion_carro']) if request.POST['descripcion_carro'] not in [None,''] else ''
 		,"activo_carro" : bool(request.POST['activo_carro'])
 		,"id_zona" : int(request.POST['id_zona']) 
+	}
+
+	cursor.execute(str_query, parametros)
+	
+	cursor.close()
+
+	return HttpResponse(json.dumps('exito'), content_type = 'application/json')
+
+def crearEstante(request):
+	cursor = connection.cursor()
+
+	str_query = """
+					INSERT into inventario_estante ("nombreEstante", "descripcionEstante", activo,"idCarro_id") 
+					values (%(nombre)s, %(descripcion)s, %(activo)s, %(id)s); 
+				"""
+	
+	parametros = {
+		"nombre" : (request.POST['nombre']) if request.POST['nombre'] not in [None,''] else ''
+		,"descripcion" : (request.POST['descripcion']) if request.POST['descripcion'] not in [None,''] else ''
+		,"activo" : bool(request.POST['activo'])
+		,"id" : int(request.POST['id']) 
+	}
+
+	cursor.execute(str_query, parametros)
+	
+	cursor.close()
+
+	return HttpResponse(json.dumps('exito'), content_type = 'application/json')
+
+def crearBandeja(request):
+	cursor = connection.cursor()
+
+	str_query = """
+					INSERT into inventario_bandeja ("nombreBandeja", "descripcionBandeja", activo,"idEstante_id") 
+					values (%(nombre)s, %(descripcion)s, %(activo)s, %(id)s); 
+				"""
+	
+	parametros = {
+		"nombre" : (request.POST['nombre']) if request.POST['nombre'] not in [None,''] else ''
+		,"descripcion" : (request.POST['descripcion']) if request.POST['descripcion'] not in [None,''] else ''
+		,"activo" : bool(request.POST['activo'])
+		,"id" : int(request.POST['id']) 
 	}
 
 	cursor.execute(str_query, parametros)
