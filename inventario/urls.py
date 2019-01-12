@@ -13,11 +13,11 @@ from inventario.mantenimiento_ubicacion_views import editarZona
 from inventario.mantenimiento_ubicacion_views import crearZona
 from inventario.mantenimiento_ubicacion_views import editarCarro
 from inventario.mantenimiento_ubicacion_views import crearCarro
-from inventario.solicitud_transferencia_views import solicitudTrans
+from inventario.solicitud_transferencia_views import solicitudTrans, llenarComboUnidad, llenarTablaBusqueda, insertarExpediente
 from inventario.solicitud_transferenciaUAI_views import solicitudTransUAI
 from inventario.solicitud_prestamoUAI_views import solicitudPrestamoUAI
 from inventario.solicitud_prestamo_views import solicitudPrestamo
-from inventario.configuracion_accesos import ConfiguracionAccesos, dt_busquedaRoles, llenarComboPuestoUnidad
+from inventario.configuracion_accesos import ConfiguracionAccesos, dt_busquedaRoles, llenarComboPuestoUnidad, dt_usuarioRolesDT, dt_rolesDisponiblesDT, agregarRol
 
 urlpatterns = [
     url(r'^index$', index),
@@ -38,6 +38,9 @@ urlpatterns = [
 
     #AMIRANDA - Solicitudes de transferencia
    	url(r'^solicitudTrans$', solicitudTrans),
+   	url(r'^llenarComboUnidad$', llenarComboUnidad, name='llenarComboUnidad'),
+   	url(r'^llenarTablaBusqueda$', llenarTablaBusqueda, name='llenarTablaBusqueda'),
+   	url(r'^insertarExpediente$', insertarExpediente),
 
    	#AMIRANDA - Solicitudes de transferencia UAI
    	url(r'^solicitudTransUAI$',solicitudTransUAI),
@@ -52,4 +55,7 @@ urlpatterns = [
    	url(r'^configuracionAccesos/$',ConfiguracionAccesos, name='ConfiguracionAccessos'),
    	url(r'^dt_busquedaRoles/$', dt_busquedaRoles, name='dt_busquedaRoles'),
    	url(r'^llenarComboPuestoUnidad/$', llenarComboPuestoUnidad, name ='llenarComboPuestoUnidad'),
+   	url(r'^dt_usuarioRolesDT/$', dt_usuarioRolesDT, name = 'dt_usuarioRolesDT'),
+	url(r'^dt_rolesDisponiblesDT/$', dt_rolesDisponiblesDT, name = 'dt_rolesDisponiblesDT'),
+	url(r'^agregarRol/$', dt_usuarioRolesDT, name = 'agregarRol'),
 ]
