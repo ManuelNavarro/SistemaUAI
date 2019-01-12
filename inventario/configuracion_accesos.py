@@ -43,27 +43,39 @@ def llenarComboPuestoUnidad(request):
 def dt_busquedaRoles(request):
 	cursor = connection.cursor()
 
+	#str_query = """
+	#	select d."nombrePersona", d."apellidoPersona", string_agg(e."nombreUnidad", ', ') as "Unidades", string_agg(c."nombrePlaza", ', ') as plazas, 
+	#		   '' as "puesto_general", string_agg(f."nombrePuestoUnidad", ', ') as "puestoUnidad"
+	#	from inventario_plazaempleado as a
+	#	left outer join inventario_empleado as b on b."idEmpleado" = a."idEmpleado_id"
+	#	left outer join inventario_plaza as c on c."idPlaza" = a."plaza_id"
+	#	left outer join inventario_persona as d on b."idPersona_id" = d."idPersona"
+	#	left outer join inventario_unidad as e on e."idUnidad" = c."idUnidad_id"
+	#	left outer join inventario_puestounidad as f on e."idUnidad" = f."idUnidad_id"
+	#	where d."nombrePersona" = 
+	#	and d."apellidoPersona" = %(apellido)s
+	#	and e."idUnidad" = %(unidad)s
+	#	and f."idPuestoUnidad" = %(puestoUnidad)s
+	#	group by 1, 2
+	#	"""
+
 	str_query = """
 		select d."nombrePersona", d."apellidoPersona", string_agg(e."nombreUnidad", ', ') as "Unidades", string_agg(c."nombrePlaza", ', ') as plazas, 
-			   '' as "puesto_general", string_agg(f."nombrePuestoUnidad", ', ') as "puestoUnidad"
+			   '' as "puesto_general", string_agg(f."nombrePuestoUnidad", ', ') as "puestoUnidad", d."idPersona"
 		from inventario_plazaempleado as a
 		left outer join inventario_empleado as b on b."idEmpleado" = a."idEmpleado_id"
 		left outer join inventario_plaza as c on c."idPlaza" = a."plaza_id"
 		left outer join inventario_persona as d on b."idPersona_id" = d."idPersona"
 		left outer join inventario_unidad as e on e."idUnidad" = c."idUnidad_id"
 		left outer join inventario_puestounidad as f on e."idUnidad" = f."idUnidad_id"
-		where d."nombrePersona" = coalesce( %(nombre)s,d."nombrePersona")
-		and d."apellidoPersona" = coalesce( %(apellido)s,d."apellidoPersona")  
-		and e."idUnidad" = coalesce(%(unidad)s, e."idUnidad")
-		and f."idPuestoUnidad" = coalesce(%(puestoUnidad)s, f."idPuestoUnidad")
 		group by 1, 2
 		"""
 
 	parametros = {
-		"nombre" : (request.POST['nombre']) if request.POST['nombre'] not in [None,''] else ''
-		,"apellido" : (request.POST['apellido']) if request.POST['apellido'] not in [None,''] else ''
-		,"unidad" : int(request.POST['unidad']) if request.POST['unidad'] not in [None,''] else 0
-		,"puestoUnidad" : int(request.POST['puestoUnidad']) if request.POST['puestoUnidad'] not in [None,''] else 0
+		"nombre" : (request.POST['nombre'])
+		,"apellido" : p_apellido
+		,"unidad" : p_unidad
+		,"puestoUnidad" : p_puestoUnidad
 	}
 
 	cursor.execute(str_query, parametros)
@@ -75,6 +87,79 @@ def dt_busquedaRoles(request):
 
 	return HttpResponse(resp, content_type = 'application/json')
 
+def dt_usuarioRolesDT(request):
+	cursor = connection.cursor()
+
+	str_query = """
+		select d."nombrePersona", d."apellidoPersona", e."nombreUnidad", c."nombrePlaza", f."nombrePuestoUnidad" as "puestoUnidad", d."idPersona"
+		from inventario_plazaempleado as a
+		left outer join inventario_empleado as b on b."idEmpleado" = a."idEmpleado_id"
+		left outer join inventario_plaza as c on c."idPlaza" = a."plaza_id"
+		left outer join inventario_persona as d on b."idPersona_id" = d."idPersona"
+		left outer join inventario_unidad as e on e."idUnidad" = c."idUnidad_id"
+		left outer join inventario_puestounidad as f on e."idUnidad" = f."idUnidad_id"
+		where d."idPersona" = %(idPersona)s
+	"""
+
+	parametros = {
+		"idPersona" : (request.POST['idPersona'])
+	}
+
+	cursor.execute(str_query, parametros)
+	qs = cursor.fetchall()
+	objects_list = convert_fetchall(qs)
+	resp = json.dumps(objects_list)
+
+	cursor.close()
+
+	return HttpResponse(resp, content_type = 'application/json')
+
+def dt_rolesDisponiblesDT(request):
+	cursor = connection.cursor()
+
+	str_query = """
+		select b."idEmpleado", c."idPlaza", c."nombrePlaza", a."activo"
+		from inventario_plazaempleado as a
+		left outer join inventario_empleado as b on b."idEmpleado" = a."idEmpleado_id"
+		left outer join inventario_plaza as c on c."idPlaza" = a."plaza_id"
+		left outer join inventario_persona as d on b."idPersona_id" = d."idPersona"
+		left outer join inventario_unidad as e on e."idUnidad" = c."idUnidad_id"
+		left outer join inventario_puestounidad as f on e."idUnidad" = f."idUnidad_id"
+		where d."idPersona" not in (%(idPersona)s);
+	"""
+
+	parametros = {
+		"idPersona" : (request.POST['idPersona'])
+	}
+
+	cursor.execute(str_query, parametros)
+	qs = cursor.fetchall()
+	objects_list = convert_fetchall(qs)
+	resp = json.dumps(objects_list)
+
+	cursor.close()
+
+	return HttpResponse(resp, content_type = 'application/json')
+
+def agregarRol(request):
+	cursor = connection.cursor()
+
+	str_query = """
+					INSERT into inventario_plazaempleado ("idEmpleado_id", "plaza_id", "activo") 
+					values (%(idEmpleado)s, %(plaza_id)s, %(activo)s); 
+				"""
+	
+	parametros = {
+		"idEmpleado" : int(request.POST['insert_idEmpleado_id'])
+		,"plaza_id" : int(request.POST['insert_plaza_id'])
+		,"activo" : bool(request.POST['insert_activo']) 
+	}
+
+	cursor.execute(str_query, parametros)
+	
+	cursor.close()
+
+	return HttpResponse(json.dumps('exito'), content_type = 'application/json')
 
 def convert_fetchall(cursor):
 	dict_cursor={}
